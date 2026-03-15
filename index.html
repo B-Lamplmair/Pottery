@@ -446,9 +446,24 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .partner-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
   .partner-link:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
+  }
+
+  .affiliate-note {
+    font-size: 0.72em !important;
+    color: var(--muted) !important;
+    margin-bottom: 0 !important;
+    opacity: 0.7;
   }
 
   /* ---- AdSense Banner Platzhalter ---- */
@@ -597,8 +612,13 @@
   <!-- Affiliate / Partner -->
   <div class="partner-section">
     <p data-i18n="partnerText">&#127848; Du suchst hochwertigen Ton & Töpferbedarf?</p>
-    <!-- Ersetze den href mit deinem Affiliate-Link -->
-    <a href="#" class="partner-link" data-i18n="partnerLink">Töpferbedarf entdecken &rarr;</a>
+    <div class="partner-links">
+      <a href="https://www.amazon.de/s?k=T%C3%B6pferton&tag=potterytools-21" class="partner-link" target="_blank" rel="noopener noreferrer sponsored">&#127847; <span data-i18n="affClay">Töpferton</span></a>
+      <a href="https://www.amazon.de/s?k=T%C3%B6pferscheibe&tag=potterytools-21" class="partner-link" target="_blank" rel="noopener noreferrer sponsored">&#9881;&#65039; <span data-i18n="affWheel">Töpferscheiben</span></a>
+      <a href="https://www.amazon.de/s?k=T%C3%B6pferwerkzeug+Set&tag=potterytools-21" class="partner-link" target="_blank" rel="noopener noreferrer sponsored">&#128295; <span data-i18n="affTools">Werkzeug-Sets</span></a>
+      <a href="https://www.amazon.de/s?k=Keramik+Glasur&tag=potterytools-21" class="partner-link" target="_blank" rel="noopener noreferrer sponsored">&#127912; <span data-i18n="affGlaze">Glasuren</span></a>
+    </div>
+    <p class="affiliate-note">* Affiliate-Links zu Amazon.de</p>
   </div>
 
   <!-- Footer -->
@@ -638,7 +658,11 @@ var T = {
     tabLabel: 'Klebelasche',
     bottomLabel: 'Boden (r={0} cm)',
     topLabel: 'Deckel (r={0} cm)',
-    rulerLabel: 'cm (Kontrollmaß)'
+    rulerLabel: 'cm (Kontrollmaß)',
+    affClay: 'Töpferton',
+    affWheel: 'Töpferscheiben',
+    affTools: 'Werkzeug-Sets',
+    affGlaze: 'Glasuren'
   },
   en: {
     title: 'Cone Template Generator',
@@ -656,6 +680,10 @@ var T = {
     partnerText: '\ud83c\udf70 Looking for quality clay & pottery supplies?',
     partnerLink: 'Discover pottery supplies \u2192',
     footerMade: 'Made with love for potters',
+    affClay: 'Pottery Clay',
+    affWheel: 'Pottery Wheels',
+    affTools: 'Tool Sets',
+    affGlaze: 'Glazes',
     infoSlant: 'Slant height',
     infoAngle: 'Sector angle',
     infoInner: 'Inner arc',
@@ -667,7 +695,11 @@ var T = {
     tabLabel: 'Glue tab',
     bottomLabel: 'Bottom (r={0} cm)',
     topLabel: 'Top (r={0} cm)',
-    rulerLabel: 'cm (control measure)'
+    rulerLabel: 'cm (control measure)',
+    affClay: 'Pottery Clay',
+    affWheel: 'Pottery Wheels',
+    affTools: 'Tool Sets',
+    affGlaze: 'Glazes'
   },
   es: {
     title: 'Generador de Cono',
@@ -696,7 +728,11 @@ var T = {
     tabLabel: 'Pestana',
     bottomLabel: 'Base (r={0} cm)',
     topLabel: 'Tapa (r={0} cm)',
-    rulerLabel: 'cm (medida de control)'
+    rulerLabel: 'cm (medida de control)',
+    affClay: 'Arcilla',
+    affWheel: 'Tornos',
+    affTools: 'Herramientas',
+    affGlaze: 'Esmaltes'
   },
   fr: {
     title: 'Generateur de cone',
@@ -725,7 +761,11 @@ var T = {
     tabLabel: 'Languette',
     bottomLabel: 'Fond (r={0} cm)',
     topLabel: 'Couvercle (r={0} cm)',
-    rulerLabel: 'cm (mesure de controle)'
+    rulerLabel: 'cm (mesure de controle)',
+    affClay: 'Argile',
+    affWheel: 'Tours de potier',
+    affTools: 'Outils',
+    affGlaze: 'Émaux'
   },
   it: {
     title: 'Generatore di cono',
@@ -754,7 +794,11 @@ var T = {
     tabLabel: 'Linguetta',
     bottomLabel: 'Fondo (r={0} cm)',
     topLabel: 'Coperchio (r={0} cm)',
-    rulerLabel: 'cm (misura di controllo)'
+    rulerLabel: 'cm (misura di controllo)',
+    affClay: 'Argilla',
+    affWheel: 'Tornio',
+    affTools: 'Attrezzi',
+    affGlaze: 'Smalti'
   }
 };
 
