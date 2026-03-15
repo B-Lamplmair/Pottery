@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kegelmantel-Schablone für Töpferei | Cone Template Generator</title>
+<meta name="description" content="Kostenloser Kegelmantel-Generator für Töpferei. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher. Free cone template generator for pottery.">
+<meta name="keywords" content="Kegelmantel, Schablone, Töpferei, Keramik, pottery template, cone generator, slab building">
+<meta name="author" content="Pottery Tools">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="Kegelmantel-Schablone für Töpferei">
+<meta property="og:description" content="Kostenloser Kegelmantel-Generator. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kegelmantel-Schablone für Töpferei">
+<meta name="twitter:description" content="Kostenloser Kegelmantel-Generator für Töpferei und Keramik.">
+
+<!-- AdSense Platzhalter - Ersetze data-ad-client mit deinem echten AdSense-Code -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-DEINE_ID_HIER" crossorigin="anonymous"></script> -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --blush: #f2e0d8;
+    --sage: #d5ddd2;
+    --lavender: #ddd5e8;
+    --cream: #faf6f1;
+    --clay: #c4a68a;
+    --clay-dark: #a0836a;
+    --text: #4a3f3a;
+    --text-light: #8a7f78;
+    --text-muted: #b5aaa2;
+    --white: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(74,63,58,0.06);
+    --shadow-md: 0 8px 24px rgba(74,63,58,0.08);
+    --shadow-lg: 0 16px 48px rgba(74,63,58,0.1);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ---- Decorative Background ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px;
+    right: -120px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, var(--lavender) 0%, transparent 70%);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--blush) 0%, transparent 70%);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .app {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+  }
+
+  /* ---- Header ---- */
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .lang-selector {
+    display: flex;
+    gap: 4px;
+    background: var(--white);
+    padding: 4px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.78em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .lang-btn:hover {
+    color: var(--text);
+    background: var(--cream);
+  }
+
+  .lang-btn.active {
+    background: var(--clay);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(145deg, var(--blush), var(--lavender));
+    border-radius: 50%;
+    margin-bottom: 16px;
+    font-size: 28px;
+    box-shadow: var(--shadow-md);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 2.2em;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 0.95em;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ---- Cards ---- */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 28px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(74,63,58,0.04);
+  }
+
+  .card-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-label .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .card-label .icon.blush { background: var(--blush); }
+  .card-label .icon.sage { background: var(--sage); }
+  .card-label .icon.lavender { background: var(--lavender); }
+
+  /* ---- Input Grid ---- */
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .field {
+    position: relative;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 0.78em;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .field-input-wrap {
+    position: relative;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    border: 1.5px solid transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+
+  .field-input-wrap:focus-within {
+    border-color: var(--clay);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(196,166,138,0.12);
+  }
+
+  .field input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+    padding-right: 52px;
+    border: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15em;
+    font-weight: 400;
+    color: var(--text);
+    outline: none;
+    -moz-appearance: textfield;
+  }
+
+  .field input[type="number"]::-webkit-inner-spin-button,
+  .field input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .field-unit {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.82em;
+    color: var(--text-muted);
+    font-weight: 400;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---- Checkbox ---- */
+  .check-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .check-field input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    border: 1.5px solid var(--clay);
+    background: var(--cream);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .check-field input[type="checkbox"]:checked {
+    background: var(--clay);
+    border-color: var(--clay);
+  }
+
+  .check-field input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .check-field label {
+    font-size: 0.9em;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  /* ---- Info ---- */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .info-chip {
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .info-chip .label {
+    font-size: 0.72em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .info-chip .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35em;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .warning {
+    background: #fff3e0;
+    color: #bf6900;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85em;
+    margin-top: 16px;
+    border-left: 3px solid #f5a623;
+  }
+
+  /* ---- Preview ---- */
+  .preview-area {
+    overflow: auto;
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .preview-area svg {
+    border: 1px dashed rgba(74,63,58,0.15);
+    border-radius: 8px;
+  }
+
+  .error {
+    color: #c0392b;
+    padding: 32px;
+    text-align: center;
+    font-size: 0.95em;
+  }
+
+  /* ---- Print Button ---- */
+  .action-row {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(145deg, var(--clay), var(--clay-dark));
+    color: var(--white);
+    border: none;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(196,166,138,0.35);
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-print:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(196,166,138,0.45);
+  }
+
+  .btn-print:active {
+    transform: translateY(0);
+  }
+
+  .print-note {
+    margin-top: 10px;
+    font-size: 0.8em;
+    color: var(--text-muted);
+  }
+
+  /* ---- Affiliate / Partner Section ---- */
+  .partner-section {
+    background: linear-gradient(135deg, var(--blush) 0%, var(--sage) 100%);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    text-align: center;
+    border: 1px solid rgba(74,63,58,0.04);
+  }
+
+  .partner-section p {
+    font-size: 0.88em;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .partner-link {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--white);
+    color: var(--clay-dark);
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.88em;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .partner-link:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* ---- AdSense Banner Platzhalter ---- */
+  .ad-container {
+    margin-bottom: 24px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+    border: 1px dashed var(--text-muted);
+    color: var(--text-muted);
+    font-size: 0.8em;
+  }
+
+  .ad-container.live {
+    border: none;
+    background: transparent;
+    min-height: auto;
+  }
+
+  /* ---- Footer ---- */
+  .footer {
+    text-align: center;
+    padding: 24px 0;
+    font-size: 0.78em;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(74,63,58,0.06);
+    margin-top: 16px;
+  }
+
+  .footer a {
+    color: var(--clay);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---- Print ---- */
+  @media print {
+    body { background: white; }
+    body::before, body::after { display: none; }
+    .header, .card:not(.preview-card), .action-row, .partner-section, .ad-container, .footer { display: none !important; }
+    .preview-card { box-shadow: none; padding: 0; border: none; margin: 0; }
+    .preview-area svg { border: none !important; max-width: none !important; }
+    .app { max-width: none; padding: 0; margin: 0; }
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 600px) {
+    .app { padding: 16px 12px 32px; }
+    h1 { font-size: 1.7em; }
+    .card { padding: 20px; }
+    .input-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .lang-selector { gap: 2px; }
+    .lang-btn { padding: 5px 8px; font-size: 0.72em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <div class="lang-selector" role="group" aria-label="Language">
+        <button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" data-lang="it" onclick="setLang('it')">IT</button>
+      </div>
+    </div>
+    <div class="brand-icon">&#127994;</div>
+    <h1 data-i18n="title">Kegelmantel-Generator</h1>
+    <p class="subtitle" data-i18n="subtitle">Schablonen für Vasen, Schalen & Becher</p>
+  </header>
+
+  <!-- Eingaben -->
+  <div class="card">
+    <div class="card-label"><span class="icon blush">&#9651;</span> <span data-i18n="cardMeasurements">Maße eingeben</span></div>
+    <div class="input-grid">
+      <div class="field">
+        <label class="field-label" for="r1" data-i18n="labelR1">Oberer Radius R<sub>1</sub></label>
+        <div class="field-input-wrap">
+          <input type="number" id="r1" value="3" min="0" step="0.1">
+          <span class="field-unit">cm</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="r2" data-i18n="labelR2">Unterer Radius R<sub>2</sub></label>
+        <div class="field-input-wrap">
+          <input type="number" id="r2" value="6" min="0.1" step="0.1">
+          <span class="field-unit">cm</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="h" data-i18n="labelH">Höhe</label>
+        <div class="field-input-wrap">
+          <input type="number" id="h" value="10" min="0.1" step="0.1">
+          <span class="field-unit">cm</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="tab" data-i18n="labelTab">Klebelasche</label>
+        <div class="field-input-wrap">
+          <input type="number" id="tab" value="1" min="0" step="0.1">
+          <span class="field-unit">cm</span>
+        </div>
+      </div>
+    </div>
+    <div class="check-field">
+      <input type="checkbox" id="showBottom" checked>
+      <label for="showBottom" data-i18n="labelShowBottom">Bodenkreis anzeigen</label>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="card">
+    <div class="card-label"><span class="icon sage">&#128207;</span> <span data-i18n="cardResults">Ergebnisse</span></div>
+    <div class="info-grid" id="info"></div>
+    <div id="warning-area"></div>
+  </div>
+
+  <!-- Vorschau -->
+  <div class="card preview-card">
+    <div class="card-label"><span class="icon lavender">&#128065;</span> <span data-i18n="cardPreview">Vorschau</span></div>
+    <div class="preview-area" id="preview"></div>
+  </div>
+
+  <!-- Drucken -->
+  <div class="action-row">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <span data-i18n="btnPrint">Drucken (Originalgröße)</span>
+    </button>
+    <p class="print-note" data-i18n="printNote">Beim Drucken "Tatsächliche Größe" / 100% wählen, keine Skalierung!</p>
+  </div>
+
+  <!-- Affiliate / Partner -->
+  <div class="partner-section">
+    <p data-i18n="partnerText">&#127848; Du suchst hochwertigen Ton & Töpferbedarf?</p>
+    <!-- Ersetze den href mit deinem Affiliate-Link -->
+    <a href="#" class="partner-link" data-i18n="partnerLink">Töpferbedarf entdecken &rarr;</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Pottery Tools &mdash; <span data-i18n="footerMade">Mit Liebe für Töpfer*innen gemacht</span></p>
+  </footer>
+
+</div>
+
+<script>
+// ===================== Translations =====================
+var T = {
+  de: {
+    title: 'Kegelmantel-Generator',
+    subtitle: 'Schablonen für Vasen, Schalen & Becher',
+    cardMeasurements: 'Maße eingeben',
+    labelR1: 'Oberer Radius R<sub>1</sub>',
+    labelR2: 'Unterer Radius R<sub>2</sub>',
+    labelH: 'Höhe',
+    labelTab: 'Klebelasche',
+    labelShowBottom: 'Bodenkreis anzeigen',
+    cardResults: 'Ergebnisse',
+    cardPreview: 'Vorschau',
+    btnPrint: 'Drucken (Originalgröße)',
+    printNote: 'Beim Drucken "Tatsächliche Größe" / 100% wählen, keine Skalierung!',
+    partnerText: '\ud83c\udf70 Du suchst hochwertigen Ton & Töpferbedarf?',
+    partnerLink: 'Töpferbedarf entdecken \u2192',
+    footerMade: 'Mit Liebe für Töpfer*innen gemacht',
+    infoSlant: 'Schrägehöhe',
+    infoAngle: 'Sektorwinkel',
+    infoInner: 'Innerer Bogen',
+    infoOuter: 'Äußerer Bogen',
+    errR2H: 'Unterer Radius und Höhe müssen größer als 0 sein.',
+    errR1neg: 'Oberer Radius darf nicht negativ sein.',
+    errR1geR2: 'Oberer Radius muss kleiner als unterer Radius sein.',
+    warnBig: 'Hinweis: Die Vorlage ist ca. {0} cm breit. Evtl. auf A3 drucken oder zusammenkleben.',
+    tabLabel: 'Klebelasche',
+    bottomLabel: 'Boden (r={0} cm)',
+    topLabel: 'Deckel (r={0} cm)',
+    rulerLabel: 'cm (Kontrollmaß)'
+  },
+  en: {
+    title: 'Cone Template Generator',
+    subtitle: 'Templates for vases, bowls & cups',
+    cardMeasurements: 'Enter measurements',
+    labelR1: 'Top Radius R<sub>1</sub>',
+    labelR2: 'Bottom Radius R<sub>2</sub>',
+    labelH: 'Height',
+    labelTab: 'Glue tab',
+    labelShowBottom: 'Show bottom circle',
+    cardResults: 'Results',
+    cardPreview: 'Preview',
+    btnPrint: 'Print (actual size)',
+    printNote: 'When printing, choose "Actual size" / 100%, no scaling!',
+    partnerText: '\ud83c\udf70 Looking for quality clay & pottery supplies?',
+    partnerLink: 'Discover pottery supplies \u2192',
+    footerMade: 'Made with love for potters',
+    infoSlant: 'Slant height',
+    infoAngle: 'Sector angle',
+    infoInner: 'Inner arc',
+    infoOuter: 'Outer arc',
+    errR2H: 'Bottom radius and height must be greater than 0.',
+    errR1neg: 'Top radius must not be negative.',
+    errR1geR2: 'Top radius must be smaller than bottom radius.',
+    warnBig: 'Note: The template is approx. {0} cm wide. Consider A3 paper or taping sheets.',
+    tabLabel: 'Glue tab',
+    bottomLabel: 'Bottom (r={0} cm)',
+    topLabel: 'Top (r={0} cm)',
+    rulerLabel: 'cm (control measure)'
+  },
+  es: {
+    title: 'Generador de Cono',
+    subtitle: 'Plantillas para jarrones, cuencos y tazas',
+    cardMeasurements: 'Introducir medidas',
+    labelR1: 'Radio superior R<sub>1</sub>',
+    labelR2: 'Radio inferior R<sub>2</sub>',
+    labelH: 'Altura',
+    labelTab: 'Pestana de pegado',
+    labelShowBottom: 'Mostrar circulo de base',
+    cardResults: 'Resultados',
+    cardPreview: 'Vista previa',
+    btnPrint: 'Imprimir (tamano real)',
+    printNote: 'Al imprimir, elegir "Tamano real" / 100%, sin escalar!',
+    partnerText: '\ud83c\udf70 Buscas arcilla y materiales de ceramica de calidad?',
+    partnerLink: 'Descubrir materiales \u2192',
+    footerMade: 'Hecho con amor para ceramistas',
+    infoSlant: 'Generatriz',
+    infoAngle: 'Angulo del sector',
+    infoInner: 'Arco interior',
+    infoOuter: 'Arco exterior',
+    errR2H: 'El radio inferior y la altura deben ser mayores que 0.',
+    errR1neg: 'El radio superior no puede ser negativo.',
+    errR1geR2: 'El radio superior debe ser menor que el radio inferior.',
+    warnBig: 'Nota: La plantilla mide aprox. {0} cm de ancho. Considere papel A3.',
+    tabLabel: 'Pestana',
+    bottomLabel: 'Base (r={0} cm)',
+    topLabel: 'Tapa (r={0} cm)',
+    rulerLabel: 'cm (medida de control)'
+  },
+  fr: {
+    title: 'Generateur de cone',
+    subtitle: 'Gabarits pour vases, bols et tasses',
+    cardMeasurements: 'Entrer les mesures',
+    labelR1: 'Rayon superieur R<sub>1</sub>',
+    labelR2: 'Rayon inferieur R<sub>2</sub>',
+    labelH: 'Hauteur',
+    labelTab: 'Languette de collage',
+    labelShowBottom: 'Afficher le cercle de base',
+    cardResults: 'Resultats',
+    cardPreview: 'Apercu',
+    btnPrint: 'Imprimer (taille reelle)',
+    printNote: 'Lors de l\'impression, choisir "Taille reelle" / 100%, sans mise a l\'echelle !',
+    partnerText: '\ud83c\udf70 Vous cherchez de l\'argile et des fournitures de qualite ?',
+    partnerLink: 'Decouvrir les fournitures \u2192',
+    footerMade: 'Fait avec amour pour les ceramistes',
+    infoSlant: 'Hauteur inclinee',
+    infoAngle: 'Angle du secteur',
+    infoInner: 'Arc interieur',
+    infoOuter: 'Arc exterieur',
+    errR2H: 'Le rayon inferieur et la hauteur doivent etre superieurs a 0.',
+    errR1neg: 'Le rayon superieur ne doit pas etre negatif.',
+    errR1geR2: 'Le rayon superieur doit etre inferieur au rayon inferieur.',
+    warnBig: 'Note : Le gabarit mesure env. {0} cm de large. Envisagez du papier A3.',
+    tabLabel: 'Languette',
+    bottomLabel: 'Fond (r={0} cm)',
+    topLabel: 'Couvercle (r={0} cm)',
+    rulerLabel: 'cm (mesure de controle)'
+  },
+  it: {
+    title: 'Generatore di cono',
+    subtitle: 'Modelli per vasi, ciotole e tazze',
+    cardMeasurements: 'Inserire le misure',
+    labelR1: 'Raggio superiore R<sub>1</sub>',
+    labelR2: 'Raggio inferiore R<sub>2</sub>',
+    labelH: 'Altezza',
+    labelTab: 'Linguetta di incollaggio',
+    labelShowBottom: 'Mostra cerchio di base',
+    cardResults: 'Risultati',
+    cardPreview: 'Anteprima',
+    btnPrint: 'Stampa (dimensione reale)',
+    printNote: 'Durante la stampa, scegliere "Dimensione reale" / 100%, nessun ridimensionamento!',
+    partnerText: '\ud83c\udf70 Cerchi argilla e forniture di qualita?',
+    partnerLink: 'Scopri le forniture \u2192',
+    footerMade: 'Fatto con amore per i ceramisti',
+    infoSlant: 'Altezza inclinata',
+    infoAngle: 'Angolo del settore',
+    infoInner: 'Arco interno',
+    infoOuter: 'Arco esterno',
+    errR2H: 'Il raggio inferiore e l\'altezza devono essere maggiori di 0.',
+    errR1neg: 'Il raggio superiore non deve essere negativo.',
+    errR1geR2: 'Il raggio superiore deve essere minore del raggio inferiore.',
+    warnBig: 'Nota: il modello e largo ca. {0} cm. Considerate carta A3.',
+    tabLabel: 'Linguetta',
+    bottomLabel: 'Fondo (r={0} cm)',
+    topLabel: 'Coperchio (r={0} cm)',
+    rulerLabel: 'cm (misura di controllo)'
+  }
+};
+
+var currentLang = 'de';
+
+function t(key) { return T[currentLang][key] || T['de'][key] || key; }
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  // Update static text
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    el.innerHTML = t(key);
+  });
+
+  // Re-calculate to update dynamic text
+  update();
+}
+
+// ===================== Calculator =====================
+function update() {
+  var r1 = parseFloat(document.getElementById('r1').value) || 0;
+  var r2 = parseFloat(document.getElementById('r2').value) || 0;
+  var h  = parseFloat(document.getElementById('h').value)  || 0;
+  var tw = parseFloat(document.getElementById('tab').value) || 0;
+  var showBottom = document.getElementById('showBottom').checked;
+  var infoEl = document.getElementById('info');
+  var warnEl = document.getElementById('warning-area');
+  var prevEl = document.getElementById('preview');
+
+  if (r2 <= 0 || h <= 0) {
+    prevEl.innerHTML = '<div class="error">' + t('errR2H') + '</div>';
+    infoEl.innerHTML = ''; warnEl.innerHTML = ''; return;
+  }
+  if (r1 < 0) {
+    prevEl.innerHTML = '<div class="error">' + t('errR1neg') + '</div>';
+    infoEl.innerHTML = ''; warnEl.innerHTML = ''; return;
+  }
+  if (r1 >= r2) {
+    prevEl.innerHTML = '<div class="error">' + t('errR1geR2') + '</div>';
+    infoEl.innerHTML = ''; warnEl.innerHTML = ''; return;
+  }
+
+  // --- Calculation ---
+  var dr = r2 - r1;
+  var l = Math.sqrt(h * h + dr * dr);
+  var R1, R2t, theta;
+  if (r1 === 0) {
+    R1 = 0; R2t = l;
+    theta = 2 * Math.PI * r2 / l;
+  } else {
+    R1 = r1 * l / dr;
+    R2t = r2 * l / dr;
+    theta = 2 * Math.PI * dr / l;
+  }
+  var thetaDeg = theta * 180 / Math.PI;
+
+  // Info
+  var warn = '';
+  if (2 * R2t * Math.sin(Math.min(theta, Math.PI) / 2) > 28) {
+    var w = (2 * R2t * Math.sin(Math.min(theta, Math.PI) / 2)).toFixed(0);
+    warn = '<div class="warning">' + t('warnBig').replace('{0}', w) + '</div>';
+  }
+  warnEl.innerHTML = warn;
+
+  infoEl.innerHTML =
+    '<div class="info-chip"><div class="label">' + t('infoSlant') + '</div><div class="value">' + l.toFixed(2) + ' cm</div></div>' +
+    '<div class="info-chip"><div class="label">' + t('infoAngle') + '</div><div class="value">' + thetaDeg.toFixed(1) + '\u00B0</div></div>' +
+    '<div class="info-chip"><div class="label">' + t('infoInner') + '</div><div class="value">' + R1.toFixed(2) + ' cm</div></div>' +
+    '<div class="info-chip"><div class="label">' + t('infoOuter') + '</div><div class="value">' + R2t.toFixed(2) + ' cm</div></div>';
+
+  // --- SVG ---
+  var hth = theta / 2;
+  var aS = -Math.PI / 2 - hth;
+  var aE = -Math.PI / 2 + hth;
+
+  function px(R, a) { return R * Math.cos(a); }
+  function py(R, a) { return R * Math.sin(a); }
+
+  var oSx = px(R2t,aS), oSy = py(R2t,aS);
+  var oEx = px(R2t,aE), oEy = py(R2t,aE);
+  var iSx = px(R1,aS),  iSy = py(R1,aS);
+  var iEx = px(R1,aE),  iEy = py(R1,aE);
+  var la = theta > Math.PI ? 1 : 0;
+
+  var mp;
+  if (r1 === 0) {
+    mp = 'M 0 0 L ' + oSx + ' ' + oSy +
+         ' A ' + R2t + ' ' + R2t + ' 0 ' + la + ' 1 ' + oEx + ' ' + oEy + ' Z';
+  } else {
+    mp = 'M ' + iSx + ' ' + iSy +
+         ' L ' + oSx + ' ' + oSy +
+         ' A ' + R2t + ' ' + R2t + ' 0 ' + la + ' 1 ' + oEx + ' ' + oEy +
+         ' L ' + iEx + ' ' + iEy +
+         ' A ' + R1 + ' ' + R1 + ' 0 ' + la + ' 0 ' + iSx + ' ' + iSy + ' Z';
+  }
+
+  // Glue tab
+  var tabSvg = '';
+  if (tw > 0) {
+    var npx2 = Math.sin(aS), npy2 = -Math.cos(aS);
+    var t1x, t1y, t2x, t2y, t3x, t3y, t4x, t4y;
+    if (r1 === 0) {
+      t1x = 0; t1y = 0;
+      t2x = oSx; t2y = oSy;
+      t3x = oSx + npx2 * tw; t3y = oSy + npy2 * tw;
+      t4x = npx2 * tw * 0.15; t4y = npy2 * tw * 0.15;
+    } else {
+      t1x = iSx; t1y = iSy;
+      t2x = oSx; t2y = oSy;
+      t3x = oSx + npx2 * tw; t3y = oSy + npy2 * tw;
+      t4x = iSx + npx2 * tw * 0.7; t4y = iSy + npy2 * tw * 0.7;
+    }
+    tabSvg = '<path d="M ' + t1x + ' ' + t1y + ' L ' + t2x + ' ' + t2y +
+             ' L ' + t3x + ' ' + t3y + ' L ' + t4x + ' ' + t4y +
+             ' Z" fill="none" stroke="#b5aaa2" stroke-width="0.04" stroke-dasharray="0.2,0.12"/>';
+    var mx = (t1x + t3x) / 2, my = (t1y + t3y) / 2;
+    tabSvg += '<text x="' + mx + '" y="' + my + '" text-anchor="middle" font-size="0.35" fill="#b5aaa2" ' +
+              'transform="rotate(' + (aS * 180 / Math.PI + 90) + ' ' + mx + ' ' + my + ')">' + t('tabLabel') + '</text>';
+  }
+
+  // --- Bounding Box ---
+  var pts = [[oSx,oSy],[oEx,oEy]];
+  if (r1 === 0) { pts.push([0,0]); } else { pts.push([iSx,iSy],[iEx,iEy]); }
+  if (tw > 0) {
+    var npx3 = Math.sin(aS), npy3 = -Math.cos(aS);
+    pts.push([oSx + npx3*tw, oSy + npy3*tw]);
+    if (r1 === 0) { pts.push([npx3*tw*0.15, npy3*tw*0.15]); }
+    else { pts.push([iSx + npx3*tw*0.7, iSy + npy3*tw*0.7]); }
+  }
+  var cards = [0, Math.PI/2, Math.PI, -Math.PI/2, -Math.PI];
+  for (var ci = 0; ci < cards.length; ci++) {
+    var a = cards[ci];
+    while (a < aS) a += 2*Math.PI;
+    if (a <= aE) pts.push([px(R2t,cards[ci]), py(R2t,cards[ci])]);
+  }
+
+  var xMin=1e9, xMax=-1e9, yMin=1e9, yMax=-1e9;
+  for (var i = 0; i < pts.length; i++) {
+    if (pts[i][0] < xMin) xMin = pts[i][0];
+    if (pts[i][0] > xMax) xMax = pts[i][0];
+    if (pts[i][1] < yMin) yMin = pts[i][1];
+    if (pts[i][1] > yMax) yMax = pts[i][1];
+  }
+
+  // Bottom circle
+  var bottomSvg = '';
+  if (showBottom) {
+    var bcY = yMax + 1.5 + r2;
+    bottomSvg = '<circle cx="0" cy="' + bcY + '" r="' + r2 + '" fill="none" stroke="#4a3f3a" stroke-width="0.05" stroke-dasharray="0.2,0.15"/>';
+    bottomSvg += '<line x1="-0.3" y1="' + bcY + '" x2="0.3" y2="' + bcY + '" stroke="#b5aaa2" stroke-width="0.02"/>';
+    bottomSvg += '<line x1="0" y1="' + (bcY-0.3) + '" x2="0" y2="' + (bcY+0.3) + '" stroke="#b5aaa2" stroke-width="0.02"/>';
+    bottomSvg += '<text x="0" y="' + (bcY + r2 + 0.6) + '" text-anchor="middle" font-size="0.4" fill="#8a7f78">' + t('bottomLabel').replace('{0}', r2) + '</text>';
+    if (r1 > 0) {
+      var tc2Y = bcY + r2 + 1.5 + r1;
+      bottomSvg += '<circle cx="0" cy="' + tc2Y + '" r="' + r1 + '" fill="none" stroke="#4a3f3a" stroke-width="0.05" stroke-dasharray="0.2,0.15"/>';
+      bottomSvg += '<line x1="-0.3" y1="' + tc2Y + '" x2="0.3" y2="' + tc2Y + '" stroke="#b5aaa2" stroke-width="0.02"/>';
+      bottomSvg += '<line x1="0" y1="' + (tc2Y-0.3) + '" x2="0" y2="' + (tc2Y+0.3) + '" stroke="#b5aaa2" stroke-width="0.02"/>';
+      bottomSvg += '<text x="0" y="' + (tc2Y + r1 + 0.6) + '" text-anchor="middle" font-size="0.4" fill="#8a7f78">' + t('topLabel').replace('{0}', r1) + '</text>';
+      var circlesBottom = tc2Y + r1 + 1;
+    } else {
+      var circlesBottom = bcY + r2 + 1;
+    }
+    if (circlesBottom > yMax) {
+      if (-r2 < xMin) xMin = -r2;
+      if (r2 > xMax) xMax = r2;
+      yMax = circlesBottom;
+    }
+  }
+
+  // Control ruler
+  var rY = yMax + 0.5;
+  var rX = xMin + 0.5;
+  var rulerSvg = '<line x1="' + rX + '" y1="' + rY + '" x2="' + (rX+5) + '" y2="' + rY + '" stroke="#b5aaa2" stroke-width="0.03"/>';
+  for (var j = 0; j <= 50; j++) {
+    var th2 = j % 10 === 0 ? 0.3 : j % 5 === 0 ? 0.18 : 0.1;
+    rulerSvg += '<line x1="' + (rX+j/10) + '" y1="' + rY + '" x2="' + (rX+j/10) + '" y2="' + (rY-th2) + '" stroke="#b5aaa2" stroke-width="0.02"/>';
+  }
+  for (var k = 0; k <= 5; k++) {
+    rulerSvg += '<text x="' + (rX+k) + '" y="' + (rY+0.4) + '" text-anchor="middle" font-size="0.28" fill="#b5aaa2">' + k + '</text>';
+  }
+  rulerSvg += '<text x="' + (rX+2.5) + '" y="' + (rY+0.8) + '" text-anchor="middle" font-size="0.28" fill="#b5aaa2">' + t('rulerLabel') + '</text>';
+  yMax = rY + 1.2;
+
+  // Padding
+  var pad = 0.8;
+  xMin -= pad; xMax += pad; yMin -= pad; yMax += pad;
+  var svgW = xMax - xMin;
+  var svgH = yMax - yMin;
+
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" ' +
+    'viewBox="' + xMin + ' ' + yMin + ' ' + svgW + ' ' + svgH + '" ' +
+    'width="' + svgW + 'cm" height="' + svgH + 'cm" ' +
+    'style="max-width:100%;height:auto;background:white">' +
+    '<path d="' + mp + '" fill="none" stroke="#4a3f3a" stroke-width="0.05"/>' +
+    tabSvg + bottomSvg + rulerSvg +
+    '<line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="#d5ddd2" stroke-width="0.02"/>' +
+    '<line x1="0" y1="-0.15" x2="0" y2="0.15" stroke="#d5ddd2" stroke-width="0.02"/>' +
+    '</svg>';
+
+  prevEl.innerHTML = svg;
+}
+
+// Event listeners
+document.querySelectorAll('input').forEach(function(el) {
+  el.addEventListener('input', update);
+});
+
+// Detect browser language on load
+(function() {
+  var browserLang = (navigator.language || navigator.userLanguage || 'de').substring(0, 2).toLowerCase();
+  var supported = ['de', 'en', 'es', 'fr', 'it'];
+  if (supported.indexOf(browserLang) !== -1) {
+    setLang(browserLang);
+  } else {
+    setLang('de');
+  }
+})();
+</script>
+</body>
+</html>
