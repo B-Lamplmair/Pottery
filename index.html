@@ -16,19 +16,27 @@
 <meta name="keywords" content="Kegelmantel, Schablone, Töpferei, Keramik, pottery template, cone generator, slab building">
 <meta name="author" content="Pottery Tools">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="">
+<link rel="canonical" id="canonical" href="https://potterytools.online/">
+
+<!-- hreflang: tell search engines about all language versions -->
+<link rel="alternate" hreflang="de" href="https://potterytools.online/?lang=de">
+<link rel="alternate" hreflang="en" href="https://potterytools.online/?lang=en">
+<link rel="alternate" hreflang="es" href="https://potterytools.online/?lang=es">
+<link rel="alternate" hreflang="fr" href="https://potterytools.online/?lang=fr">
+<link rel="alternate" hreflang="it" href="https://potterytools.online/?lang=it">
+<link rel="alternate" hreflang="x-default" href="https://potterytools.online/">
 
 <!-- Open Graph / Social Media -->
-<meta property="og:title" content="Kegelmantel-Schablone für Töpferei">
-<meta property="og:description" content="Kostenloser Kegelmantel-Generator. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher.">
+<meta property="og:title" id="og-title" content="Kegelmantel-Schablone für Töpferei">
+<meta property="og:description" id="og-desc" content="Kostenloser Kegelmantel-Generator. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="">
+<meta property="og:url" id="og-url" content="https://potterytools.online/">
 <meta property="og:image" content="">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kegelmantel-Schablone für Töpferei">
-<meta name="twitter:description" content="Kostenloser Kegelmantel-Generator für Töpferei und Keramik.">
+<meta name="twitter:title" id="tw-title" content="Kegelmantel-Schablone für Töpferei">
+<meta name="twitter:description" id="tw-desc" content="Kostenloser Kegelmantel-Generator für Töpferei und Keramik.">
 
 <!-- AdSense Platzhalter - Ersetze data-ad-client mit deinem echten AdSense-Code -->
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-DEINE_ID_HIER" crossorigin="anonymous"></script> -->
@@ -820,11 +828,62 @@ var T = {
 
 var currentLang = 'de';
 
+// SEO metadata per language
+var SEO = {
+  de: {
+    title: 'Kegelmantel-Schablone für Töpferei | Pottery Tools',
+    description: 'Kostenloser Kegelmantel-Generator für Töpferei. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher.',
+    ogTitle: 'Kegelmantel-Schablone für Töpferei',
+    ogDesc: 'Kostenloser Kegelmantel-Generator. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher.'
+  },
+  en: {
+    title: 'Cone Template Generator for Pottery | Pottery Tools',
+    description: 'Free cone template generator for pottery. Create printable 1:1 templates for vases, bowls and cups using slab building technique.',
+    ogTitle: 'Cone Template Generator for Pottery',
+    ogDesc: 'Free cone template generator. Create printable 1:1 slab building templates for vases, bowls and cups.'
+  },
+  es: {
+    title: 'Generador de Plantillas de Cono para Cerámica | Pottery Tools',
+    description: 'Generador gratuito de plantillas de cono para cerámica. Crea plantillas a escala real para jarrones, cuencos y tazas.',
+    ogTitle: 'Generador de Plantillas de Cono para Cerámica',
+    ogDesc: 'Generador gratuito de plantillas de cono. Crea plantillas imprimibles para jarrones, cuencos y tazas.'
+  },
+  fr: {
+    title: 'Générateur de Gabarit de Cône pour Poterie | Pottery Tools',
+    description: 'Générateur gratuit de gabarits de cône pour la poterie. Créez des gabarits imprimables pour vases, bols et tasses.',
+    ogTitle: 'Générateur de Gabarit de Cône pour Poterie',
+    ogDesc: 'Générateur gratuit de gabarits de cône. Créez des gabarits imprimables pour vases, bols et tasses.'
+  },
+  it: {
+    title: 'Generatore di Modelli a Cono per Ceramica | Pottery Tools',
+    description: 'Generatore gratuito di modelli a cono per la ceramica. Crea modelli stampabili per vasi, ciotole e tazze.',
+    ogTitle: 'Generatore di Modelli a Cono per Ceramica',
+    ogDesc: 'Generatore gratuito di modelli a cono. Crea modelli stampabili per vasi, ciotole e tazze.'
+  }
+};
+
 function t(key) { return T[currentLang][key] || T['de'][key] || key; }
 
-function setLang(lang) {
+function setLang(lang, pushState) {
   currentLang = lang;
   document.documentElement.lang = lang;
+
+  // Update URL parameter (without page reload)
+  if (pushState !== false) {
+    var newUrl = window.location.pathname + '?lang=' + lang;
+    history.replaceState(null, '', newUrl);
+  }
+
+  // Update SEO meta tags
+  var seo = SEO[lang] || SEO['de'];
+  document.title = seo.title;
+  document.querySelector('meta[name="description"]').setAttribute('content', seo.description);
+  document.getElementById('canonical').setAttribute('href', 'https://potterytools.online/?lang=' + lang);
+  document.getElementById('og-title').setAttribute('content', seo.ogTitle);
+  document.getElementById('og-desc').setAttribute('content', seo.ogDesc);
+  document.getElementById('og-url').setAttribute('content', 'https://potterytools.online/?lang=' + lang);
+  document.getElementById('tw-title').setAttribute('content', seo.ogTitle);
+  document.getElementById('tw-desc').setAttribute('content', seo.ogDesc);
 
   // Update active button
   document.querySelectorAll('.lang-btn').forEach(function(b) {
@@ -1030,14 +1089,21 @@ document.querySelectorAll('input').forEach(function(el) {
   el.addEventListener('input', update);
 });
 
-// Detect browser language on load
+// Detect language: URL param > browser language > default (de)
 (function() {
-  var browserLang = (navigator.language || navigator.userLanguage || 'de').substring(0, 2).toLowerCase();
   var supported = ['de', 'en', 'es', 'fr', 'it'];
-  if (supported.indexOf(browserLang) !== -1) {
-    setLang(browserLang);
+  var urlParams = new URLSearchParams(window.location.search);
+  var urlLang = urlParams.get('lang');
+
+  if (urlLang && supported.indexOf(urlLang) !== -1) {
+    setLang(urlLang, false);
   } else {
-    setLang('de');
+    var browserLang = (navigator.language || navigator.userLanguage || 'de').substring(0, 2).toLowerCase();
+    if (supported.indexOf(browserLang) !== -1) {
+      setLang(browserLang);
+    } else {
+      setLang('de');
+    }
   }
 })();
 </script>
