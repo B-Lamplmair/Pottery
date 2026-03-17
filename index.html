@@ -38,6 +38,83 @@
 <meta name="twitter:title" id="tw-title" content="Kegelmantel-Schablone für Töpferei">
 <meta name="twitter:description" id="tw-desc" content="Kostenloser Kegelmantel-Generator für Töpferei und Keramik.">
 
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏺</text></svg>">
+
+<!-- Structured Data: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pottery Tools — Cone Template Generator",
+  "url": "https://potterytools.online/",
+  "description": "Free online cone template generator for pottery. Create printable 1:1 slab building templates for vases, bowls and cups.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "inLanguage": ["de", "en", "es", "fr", "it"],
+  "author": {
+    "@type": "Organization",
+    "name": "Pottery Tools",
+    "url": "https://potterytools.online/"
+  }
+}
+</script>
+
+<!-- Structured Data: FAQ -->
+<script type="application/ld+json" id="faq-jsonld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a cone template (Kegelmantel)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A cone template (Kegelmantel) is a flat pattern that, when cut out and rolled, forms the surface of a truncated cone. In pottery, it is used in slab building technique to create symmetrical shapes like vases, bowls, cups, and lampshades from flat clay slabs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I print the template at the correct size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When printing, select 'Actual Size' or '100%' in your printer settings. Do not use 'Fit to Page' or any scaling option. The template includes a ruler you can measure with a physical ruler to verify the print is accurate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What measurements do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need three measurements: the top radius (opening of your piece), the bottom radius (base of your piece), and the height. The top radius must be smaller than the bottom radius. All measurements are in centimeters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the glue tab for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The glue tab is a small flap added to one edge of the template. When you roll the clay slab into a cone shape, the glue tab provides an overlap area where the two edges meet, allowing you to score, slip, and join them securely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for large pieces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! If the template is larger than A4 paper, the tool will show a warning with the approximate width. You can print on A3 paper, or print on multiple A4 sheets and tape them together. Use the control ruler on the template to verify alignment."
+      }
+    }
+  ]
+}
+</script>
+
 <!-- AdSense Platzhalter - Ersetze data-ad-client mit deinem echten AdSense-Code -->
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-DEINE_ID_HIER" crossorigin="anonymous"></script> -->
 
@@ -490,6 +567,61 @@
     opacity: 0.7;
   }
 
+  /* ---- FAQ ---- */
+  .faq-card {
+    margin-bottom: 24px;
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .faq-item {
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    padding: 0;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .faq-item summary {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 1.05em;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .faq-item summary::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--blush);
+    color: var(--text-muted);
+    font-size: 1.1em;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::before {
+    content: '−';
+    transform: rotate(0deg);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item p {
+    padding: 0 18px 16px 52px;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.92em;
+    line-height: 1.65;
+  }
+
   /* ---- AdSense Banner Platzhalter ---- */
   .ad-container {
     margin-bottom: 24px;
@@ -534,7 +666,7 @@
   @media print {
     body { background: white; }
     body::before, body::after { display: none; }
-    .header, .card:not(.preview-card), .action-row, .partner-section, .ad-container, .footer { display: none !important; }
+    .header, .card:not(.preview-card), .action-row, .partner-section, .ad-container, .faq-card, .footer { display: none !important; }
     .preview-card { box-shadow: none; padding: 0; border: none; margin: 0; }
     .preview-area svg { border: none !important; max-width: none !important; }
     .app { max-width: none; padding: 0; margin: 0; }
@@ -645,6 +777,33 @@
     <p class="affiliate-note" data-i18n="affiliateNote">Mit einer Bestellung über diese Links unterstützt du dieses Tool — für dich kostet es keinen Cent mehr. Danke! ♥</p>
   </div>
 
+  <!-- FAQ -->
+  <div class="card faq-card">
+    <div class="card-label"><span class="icon blush">?</span> <span data-i18n="faqTitle">Häufige Fragen</span></div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-i18n="faq1q">Was ist ein Kegelmantel?</summary>
+        <p data-i18n="faq1a">Ein Kegelmantel ist die abgewickelte Oberfläche eines Kegelstumpfs. In der Töpferei wird er als Schablone für die Plattentechnik verwendet — ausschneiden, rollen, zusammenkleben — und du erhältst eine perfekt symmetrische Form für Vasen, Schalen, Becher oder Lampenschirme.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq2q">Wie drucke ich die Schablone richtig?</summary>
+        <p data-i18n="faq2a">Wähle beim Drucken unbedingt „Tatsächliche Größe" oder „100%" in den Druckereinstellungen. Verwende nicht „An Seite anpassen". Die Schablone enthält ein Kontrolllineal — miss es mit einem echten Lineal nach, um sicherzustellen, dass der Ausdruck korrekt ist.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq3q">Welche Maße brauche ich?</summary>
+        <p data-i18n="faq3a">Du brauchst drei Maße: den oberen Radius (Öffnung deines Stücks), den unteren Radius (Boden) und die Höhe. Der obere Radius muss kleiner als der untere sein. Alle Maße werden in Zentimetern eingegeben.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq4q">Wofür ist die Klebelasche?</summary>
+        <p data-i18n="faq4a">Die Klebelasche ist ein schmaler Streifen am Rand der Schablone. Wenn du die Tonplatte zum Kegel rollst, überlappen sich die Kanten an der Lasche — dort kannst du einritzen, Schlicker auftragen und die Naht sauber verbinden.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq5q">Kann ich damit auch große Stücke bauen?</summary>
+        <p data-i18n="faq5a">Ja! Wenn die Schablone breiter als A4 ist, zeigt das Tool einen Hinweis. Du kannst auf A3 drucken oder mehrere A4-Blätter zusammenkleben. Nutze das Kontrolllineal auf der Schablone, um die Blätter exakt auszurichten.</p>
+      </details>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2026 Pottery Tools &mdash; <span data-i18n="footerMade">Mit Liebe für Töpfer*innen gemacht</span></p>
@@ -686,7 +845,18 @@ var T = {
     affWheel: 'Töpferscheiben',
     affTools: 'Werkzeug-Sets',
     affGlaze: 'Glasuren',
-    affiliateNote: 'Mit einer Bestellung über diese Links unterstützt du dieses Tool — für dich kostet es keinen Cent mehr. Danke! \u2665'
+    affiliateNote: 'Mit einer Bestellung über diese Links unterstützt du dieses Tool — für dich kostet es keinen Cent mehr. Danke! \u2665',
+    faqTitle: 'Häufige Fragen',
+    faq1q: 'Was ist ein Kegelmantel?',
+    faq1a: 'Ein Kegelmantel ist die abgewickelte Oberfläche eines Kegelstumpfs. In der Töpferei wird er als Schablone für die Plattentechnik verwendet — ausschneiden, rollen, zusammenkleben — und du erhältst eine perfekt symmetrische Form für Vasen, Schalen, Becher oder Lampenschirme.',
+    faq2q: 'Wie drucke ich die Schablone richtig?',
+    faq2a: 'Wähle beim Drucken unbedingt „Tatsächliche Größe" oder „100%" in den Druckereinstellungen. Verwende nicht „An Seite anpassen". Die Schablone enthält ein Kontrolllineal — miss es mit einem echten Lineal nach, um sicherzustellen, dass der Ausdruck korrekt ist.',
+    faq3q: 'Welche Maße brauche ich?',
+    faq3a: 'Du brauchst drei Maße: den oberen Radius (Öffnung deines Stücks), den unteren Radius (Boden) und die Höhe. Der obere Radius muss kleiner als der untere sein. Alle Maße werden in Zentimetern eingegeben.',
+    faq4q: 'Wofür ist die Klebelasche?',
+    faq4a: 'Die Klebelasche ist ein schmaler Streifen am Rand der Schablone. Wenn du die Tonplatte zum Kegel rollst, überlappen sich die Kanten an der Lasche — dort kannst du einritzen, Schlicker auftragen und die Naht sauber verbinden.',
+    faq5q: 'Kann ich damit auch große Stücke bauen?',
+    faq5a: 'Ja! Wenn die Schablone breiter als A4 ist, zeigt das Tool einen Hinweis. Du kannst auf A3 drucken oder mehrere A4-Blätter zusammenkleben. Nutze das Kontrolllineal auf der Schablone, um die Blätter exakt auszurichten.'
   },
   en: {
     title: 'Cone Template Generator',
@@ -723,7 +893,18 @@ var T = {
     affWheel: 'Pottery Wheels',
     affTools: 'Tool Sets',
     affGlaze: 'Glazes',
-    affiliateNote: 'Ordering through these links supports this tool — at no extra cost to you. Thank you! \u2665'
+    affiliateNote: 'Ordering through these links supports this tool — at no extra cost to you. Thank you! \u2665',
+    faqTitle: 'FAQ',
+    faq1q: 'What is a cone template?',
+    faq1a: 'A cone template is the flat, unrolled surface of a truncated cone. In pottery, it is used in slab building technique — cut it out, roll it, join the edges — and you get a perfectly symmetrical shape for vases, bowls, cups, or lampshades.',
+    faq2q: 'How do I print the template at the correct size?',
+    faq2a: 'When printing, select "Actual Size" or "100%" in your printer settings. Do not use "Fit to Page". The template includes a control ruler — measure it with a physical ruler to verify the print is accurate.',
+    faq3q: 'What measurements do I need?',
+    faq3a: 'You need three measurements: the top radius (opening of your piece), the bottom radius (base), and the height. The top radius must be smaller than the bottom radius. All measurements are in centimeters.',
+    faq4q: 'What is the glue tab for?',
+    faq4a: 'The glue tab is a narrow strip along one edge of the template. When you roll the clay slab into a cone, the edges overlap at the tab — score, apply slip, and join the seam securely.',
+    faq5q: 'Can I use this for large pieces?',
+    faq5a: 'Yes! If the template is wider than A4, the tool will show a warning. You can print on A3 paper or tape multiple A4 sheets together. Use the control ruler on the template to align the sheets precisely.'
   },
   es: {
     title: 'Generador de Cono',
@@ -756,7 +937,18 @@ var T = {
     affWheel: 'Tornos',
     affTools: 'Herramientas',
     affGlaze: 'Esmaltes',
-    affiliateNote: 'Al comprar a trav\u00e9s de estos enlaces apoyas esta herramienta — sin coste adicional para ti. \u00a1Gracias! \u2665'
+    affiliateNote: 'Al comprar a trav\u00e9s de estos enlaces apoyas esta herramienta — sin coste adicional para ti. \u00a1Gracias! \u2665',
+    faqTitle: 'Preguntas frecuentes',
+    faq1q: '\u00bfQu\u00e9 es una plantilla de cono?',
+    faq1a: 'Una plantilla de cono es la superficie desplegada de un cono truncado. En cer\u00e1mica, se usa en la t\u00e9cnica de planchas — recortar, enrollar, unir los bordes — y obtienes una forma perfectamente sim\u00e9trica para jarrones, cuencos, tazas o pantallas de l\u00e1mparas.',
+    faq2q: '\u00bfC\u00f3mo imprimo la plantilla al tama\u00f1o correcto?',
+    faq2a: 'Al imprimir, selecciona "Tama\u00f1o real" o "100%" en la configuraci\u00f3n de tu impresora. No uses "Ajustar a la p\u00e1gina". La plantilla incluye una regla de control — m\u00eddela con una regla f\u00edsica para verificar la precisi\u00f3n.',
+    faq3q: '\u00bfQu\u00e9 medidas necesito?',
+    faq3a: 'Necesitas tres medidas: el radio superior (abertura), el radio inferior (base) y la altura. El radio superior debe ser menor que el inferior. Todas las medidas son en cent\u00edmetros.',
+    faq4q: '\u00bfPara qu\u00e9 sirve la pesta\u00f1a de pegado?',
+    faq4a: 'La pesta\u00f1a de pegado es una tira estrecha en un borde de la plantilla. Al enrollar la plancha de arcilla en forma de cono, los bordes se superponen en la pesta\u00f1a — rayar, aplicar barbotina y unir la costura de forma segura.',
+    faq5q: '\u00bfPuedo usarlo para piezas grandes?',
+    faq5a: '\u00a1S\u00ed! Si la plantilla es m\u00e1s ancha que A4, la herramienta mostrar\u00e1 un aviso. Puedes imprimir en papel A3 o pegar varias hojas A4. Usa la regla de control en la plantilla para alinear las hojas con precisi\u00f3n.'
   },
   fr: {
     title: 'Generateur de cone',
@@ -789,7 +981,18 @@ var T = {
     affWheel: 'Tours de potier',
     affTools: 'Outils',
     affGlaze: '\u00c9maux',
-    affiliateNote: 'En commandant via ces liens, tu soutiens cet outil — sans frais suppl\u00e9mentaires pour toi. Merci ! \u2665'
+    affiliateNote: 'En commandant via ces liens, tu soutiens cet outil — sans frais suppl\u00e9mentaires pour toi. Merci ! \u2665',
+    faqTitle: 'Questions fr\u00e9quentes',
+    faq1q: 'Qu\'est-ce qu\'un gabarit de c\u00f4ne ?',
+    faq1a: 'Un gabarit de c\u00f4ne est la surface d\u00e9pli\u00e9e d\'un c\u00f4ne tronqu\u00e9. En poterie, il est utilis\u00e9 dans la technique de la plaque — d\u00e9couper, rouler, assembler les bords — et vous obtenez une forme parfaitement sym\u00e9trique pour vases, bols, tasses ou abat-jour.',
+    faq2q: 'Comment imprimer le gabarit \u00e0 la bonne taille ?',
+    faq2a: 'Lors de l\'impression, s\u00e9lectionnez « Taille r\u00e9elle » ou « 100% ». N\'utilisez pas « Ajuster \u00e0 la page ». Le gabarit comprend une r\u00e8gle de contr\u00f4le — mesurez-la avec une r\u00e8gle physique pour v\u00e9rifier la pr\u00e9cision.',
+    faq3q: 'Quelles mesures faut-il ?',
+    faq3a: 'Vous avez besoin de trois mesures : le rayon sup\u00e9rieur (ouverture), le rayon inf\u00e9rieur (base) et la hauteur. Le rayon sup\u00e9rieur doit \u00eatre inf\u00e9rieur au rayon inf\u00e9rieur. Toutes les mesures sont en centim\u00e8tres.',
+    faq4q: '\u00c0 quoi sert la languette de collage ?',
+    faq4a: 'La languette de collage est une bande \u00e9troite sur un bord du gabarit. Lorsque vous roulez la plaque d\'argile en c\u00f4ne, les bords se chevauchent au niveau de la languette — grattez, appliquez de la barbotine et assemblez solidement.',
+    faq5q: 'Puis-je l\'utiliser pour de grandes pi\u00e8ces ?',
+    faq5a: 'Oui ! Si le gabarit est plus large que le format A4, l\'outil affichera un avertissement. Vous pouvez imprimer sur papier A3 ou assembler plusieurs feuilles A4. Utilisez la r\u00e8gle de contr\u00f4le pour aligner les feuilles avec pr\u00e9cision.'
   },
   it: {
     title: 'Generatore di cono',
@@ -822,7 +1025,18 @@ var T = {
     affWheel: 'Tornio',
     affTools: 'Attrezzi',
     affGlaze: 'Smalti',
-    affiliateNote: 'Ordinando tramite questi link sostieni questo strumento — senza costi aggiuntivi per te. Grazie! \u2665'
+    affiliateNote: 'Ordinando tramite questi link sostieni questo strumento — senza costi aggiuntivi per te. Grazie! \u2665',
+    faqTitle: 'Domande frequenti',
+    faq1q: 'Che cos\'\u00e8 un modello a cono?',
+    faq1a: 'Un modello a cono \u00e8 la superficie srotolata di un tronco di cono. Nella ceramica si usa nella tecnica a lastra — ritagliare, arrotolare, unire i bordi — e si ottiene una forma perfettamente simmetrica per vasi, ciotole, tazze o paralumi.',
+    faq2q: 'Come stampo il modello alla dimensione corretta?',
+    faq2a: 'Durante la stampa, seleziona "Dimensione reale" o "100%" nelle impostazioni della stampante. Non usare "Adatta alla pagina". Il modello include un righello di controllo — misuralo con un righello fisico per verificare la precisione.',
+    faq3q: 'Quali misure servono?',
+    faq3a: 'Servono tre misure: il raggio superiore (apertura), il raggio inferiore (base) e l\'altezza. Il raggio superiore deve essere minore di quello inferiore. Tutte le misure sono in centimetri.',
+    faq4q: 'A cosa serve la linguetta di incollaggio?',
+    faq4a: 'La linguetta di incollaggio \u00e8 una striscia stretta su un bordo del modello. Quando arrotoli la lastra di argilla a cono, i bordi si sovrappongono alla linguetta — graffia, applica la barbottina e unisci la giuntura saldamente.',
+    faq5q: 'Posso usarlo per pezzi grandi?',
+    faq5a: 'S\u00ec! Se il modello \u00e8 pi\u00f9 largo del formato A4, lo strumento mostrer\u00e0 un avviso. Puoi stampare su carta A3 o unire pi\u00f9 fogli A4. Usa il righello di controllo sul modello per allineare i fogli con precisione.'
   }
 };
 
