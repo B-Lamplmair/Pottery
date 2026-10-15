@@ -97,7 +97,7 @@
       "name": "Welche Maße brauche ich?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Du brauchst drei Maße: den oberen Radius (Öffnung deines Stücks), den unteren Radius (Boden) und die Höhe. Der obere Radius muss kleiner als der untere sein. Alle Maße werden in Zentimetern eingegeben."
+        "text": "Du brauchst drei Maße: oben (Öffnung), unten (Boden) und die Höhe – wahlweise als Radius oder Durchmesser. Das obere Maß muss kleiner als das untere sein. Alle Maße in Zentimetern; gemeint sind die Maße des fertig gebrannten Stücks."
       }
     },
     {
@@ -106,6 +106,22 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Die Höhe ist der senkrechte Abstand zwischen Ober- und Unterkante deines Stücks — also wie hoch die fertige Vase oder Schale wird. Die Schrägehöhe ist die tatsächliche Länge der schrägen Außenwand. Da die Wand nicht gerade nach oben geht, sondern schräg zuläuft, ist die Schrägehöhe immer größer als die Höhe. Das Tool berechnet die Schrägehöhe automatisch — du gibst nur die Höhe ein."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie berücksichtige ich die Schwindung des Tons?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ton schrumpft beim Trocknen und Brennen – je nach Masse insgesamt etwa 5–15 %. Trag Trocken- und Brennschwindung aus dem Datenblatt deines Tons ein; das Tool vergrößert die Schablone so, dass das gebrannte Stück deine Wunschmaße hat. Gerechnet wird mit Nassmaß = Endmaß ÷ (1 − Schwindung), weil Schwindung auf das Nassmaß bezogen wird – einfach die Prozente aufzuschlagen ergibt ein zu kleines Stück. Kein Datenblatt? Ritze in eine frische Tonplatte eine 10-cm-Linie, lass sie trocknen, brenne sie und miss nach: 100 minus Messwert in mm ergibt die Gesamtschwindung in Prozent. Trag sie in ein Feld ein und lass das andere auf 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Rolle spielt die Plattenstärke?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beim Rollen wird die Außenseite der Tonplatte gedehnt und die Innenseite gestaucht – ihre Länge behält ungefähr nur die Wandmitte. Gib deshalb die Plattenstärke an und wähle, ob deine Maße außen oder innen gemessen sind; das Tool rechnet die Schablone auf die Wandmitte um. Boden- und Deckelkreis werden mit dem Außenmaß gezeichnet, passend für eine Wand, die auf die Bodenplatte gesetzt wird."
       }
     },
     {
@@ -121,7 +137,7 @@
       "name": "Kann ich damit auch große Stücke bauen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja! Wenn die Schablone breiter als A4 ist, zeigt das Tool einen Hinweis. Du kannst auf A3 drucken oder mehrere A4-Blätter zusammenkleben. Nutze das Kontrolllineal auf der Schablone, um die Blätter exakt auszurichten."
+        "text": "Ja! Ist die Schablone größer als ein A4-Blatt, teilt der PDF-Download sie automatisch auf mehrere Seiten auf – mit Überlappung, Blattbezeichnungen (A1, A2 …) und einem Kontrolllineal auf jeder Seite. Ausdrucken, an den gestrichelten Linien überlappen und zusammenkleben."
       }
     }
   ]
@@ -692,6 +708,97 @@
     text-decoration: underline;
   }
 
+  /* ---- Segmented toggle, hints, secondary actions ---- */
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .seg {
+    display: inline-flex;
+    background: var(--cream);
+    border-radius: 30px;
+    padding: 4px;
+    gap: 2px;
+  }
+
+  .seg button {
+    background: none;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .seg button.active {
+    background: var(--clay);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .card-head .seg { margin-bottom: 18px; }
+
+  .seg-wide {
+    display: flex;
+    padding: 5px;
+  }
+
+  .seg-wide button {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 0.9em;
+  }
+
+  .hint {
+    margin-top: 16px;
+    font-size: 0.82em;
+    color: var(--text-light);
+    line-height: 1.55;
+  }
+
+  .wet-dims:not(:empty) {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    font-size: 0.85em;
+    color: var(--text);
+  }
+
+  .secondary-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    border: 1px solid rgba(196,166,138,0.5);
+    color: var(--clay-dark);
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--clay);
+    box-shadow: var(--shadow-sm);
+  }
+
   /* ---- Print ---- */
   @media print {
     body { background: white; }
@@ -736,17 +843,23 @@
 
   <!-- Eingaben -->
   <div class="card">
-    <div class="card-label"><span class="icon blush">&#9651;</span> <span data-i18n="cardMeasurements">Maße eingeben</span></div>
+    <div class="card-head">
+      <div class="card-label"><span class="icon blush">&#9651;</span> <span data-i18n="cardMeasurements">Maße eingeben</span></div>
+      <div class="seg" role="group" id="unitSeg">
+        <button type="button" data-unit="r" class="active" aria-pressed="true" data-i18n="unitRadius">Radius</button>
+        <button type="button" data-unit="d" aria-pressed="false" data-i18n="unitDiameter">Durchmesser</button>
+      </div>
+    </div>
     <div class="input-grid">
       <div class="field">
-        <label class="field-label" for="r1" data-i18n="labelR1">Oberer Radius R<sub>1</sub></label>
+        <label class="field-label" for="r1" id="labelTop" data-i18n="labelR1">Oberer Radius R<sub>1</sub></label>
         <div class="field-input-wrap">
           <input type="number" id="r1" value="3" min="0" step="0.1">
           <span class="field-unit">cm</span>
         </div>
       </div>
       <div class="field">
-        <label class="field-label" for="r2" data-i18n="labelR2">Unterer Radius R<sub>2</sub></label>
+        <label class="field-label" for="r2" id="labelBottom" data-i18n="labelR2">Unterer Radius R<sub>2</sub></label>
         <div class="field-input-wrap">
           <input type="number" id="r2" value="6" min="0.1" step="0.1">
           <span class="field-unit">cm</span>
@@ -773,10 +886,47 @@
     </div>
   </div>
 
+  <!-- Ton & Wandstärke -->
+  <div class="card">
+    <div class="card-label"><span class="icon sage">&#9673;</span> <span data-i18n="cardClay">Ton &amp; Wandstärke</span></div>
+    <div class="input-grid">
+      <div class="field">
+        <label class="field-label" for="dry" data-i18n="labelDry">Trockenschwindung</label>
+        <div class="field-input-wrap">
+          <input type="number" id="dry" value="0" min="0" max="29.9" step="0.1">
+          <span class="field-unit">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="fire" data-i18n="labelFire">Brennschwindung</label>
+        <div class="field-input-wrap">
+          <input type="number" id="fire" value="0" min="0" max="29.9" step="0.1">
+          <span class="field-unit">%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="thick" data-i18n="labelThick">Plattenstärke</label>
+        <div class="field-input-wrap">
+          <input type="number" id="thick" value="0" min="0" step="0.5">
+          <span class="field-unit">mm</span>
+        </div>
+      </div>
+      <div class="field">
+        <span class="field-label" data-i18n="labelSide">Maße gemessen</span>
+        <div class="seg seg-wide" role="group" id="sideSeg">
+          <button type="button" data-side="o" class="active" aria-pressed="true" data-i18n="sideOuter">Außen</button>
+          <button type="button" data-side="i" aria-pressed="false" data-i18n="sideInner">Innen</button>
+        </div>
+      </div>
+    </div>
+    <p class="hint" data-i18n="clayHint">Trag die Schwindung aus dem Datenblatt deines Tons ein – die Schablone wird dann so vergrößert, dass das gebrannte Stück deine Wunschmaße hat. Mit Plattenstärke wird auf die Wandmitte umgerechnet. Bei 0 entspricht die Schablone exakt deinen Maßen.</p>
+  </div>
+
   <!-- Info -->
   <div class="card">
     <div class="card-label"><span class="icon sage">&#128207;</span> <span data-i18n="cardResults">Ergebnisse</span></div>
     <div class="info-grid" id="info"></div>
+    <div class="wet-dims" id="wet-dims"></div>
     <div id="warning-area"></div>
   </div>
 
@@ -788,11 +938,16 @@
 
   <!-- Drucken -->
   <div class="action-row">
-    <button class="btn-print" onclick="window.print()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      <span data-i18n="btnPrint">Drucken (Originalgröße)</span>
+    <button type="button" class="btn-print" id="btnPdf">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg>
+      <span data-i18n="btnPdf">PDF herunterladen</span>
     </button>
-    <p class="print-note" data-i18n="printNote">Beim Drucken "Tatsächliche Größe" / 100% wählen, keine Skalierung!</p>
+    <div class="secondary-actions">
+      <button type="button" class="btn-secondary" onclick="window.print()"><span data-i18n="btnPrint">Drucken</span></button>
+      <button type="button" class="btn-secondary" id="btnSvg"><span data-i18n="btnSvg">SVG</span></button>
+      <button type="button" class="btn-secondary" id="btnLink"><span data-i18n="btnLink">Link kopieren</span></button>
+    </div>
+    <p class="print-note" data-i18n="printNote">Große Schablonen verteilt das PDF automatisch auf mehrere A4-Seiten. Beim Drucken immer „Tatsächliche Größe“ / 100 % wählen.</p>
   </div>
 
   <!-- Affiliate / Partner -->
@@ -822,11 +977,19 @@
       </details>
       <details class="faq-item">
         <summary data-i18n="faq3q">Welche Maße brauche ich?</summary>
-        <p data-i18n="faq3a">Du brauchst drei Maße: den oberen Radius (Öffnung deines Stücks), den unteren Radius (Boden) und die Höhe. Der obere Radius muss kleiner als der untere sein. Alle Maße werden in Zentimetern eingegeben.</p>
+        <p data-i18n="faq3a">Du brauchst drei Maße: oben (Öffnung), unten (Boden) und die Höhe – wahlweise als Radius oder Durchmesser. Das obere Maß muss kleiner als das untere sein. Alle Maße in Zentimetern; gemeint sind die Maße des fertig gebrannten Stücks.</p>
       </details>
       <details class="faq-item">
         <summary data-i18n="faq6q">Was ist der Unterschied zwischen Höhe und Schrägehöhe?</summary>
         <p data-i18n="faq6a">Die Höhe ist der senkrechte Abstand zwischen Ober- und Unterkante deines Stücks — also wie hoch die fertige Vase oder Schale wird. Die Schrägehöhe ist die tatsächliche Länge der schrägen Außenwand. Da die Wand nicht gerade nach oben geht, sondern schräg zuläuft, ist die Schrägehöhe immer größer als die Höhe. Das Tool berechnet die Schrägehöhe automatisch — du gibst nur die Höhe ein.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq7q">Wie berücksichtige ich die Schwindung des Tons?</summary>
+        <p data-i18n="faq7a">Ton schrumpft beim Trocknen und Brennen – je nach Masse insgesamt etwa 5–15 %. Trag Trocken- und Brennschwindung aus dem Datenblatt deines Tons ein; das Tool vergrößert die Schablone so, dass das gebrannte Stück deine Wunschmaße hat. Gerechnet wird mit Nassmaß = Endmaß ÷ (1 − Schwindung), weil Schwindung auf das Nassmaß bezogen wird – einfach die Prozente aufzuschlagen ergibt ein zu kleines Stück. Kein Datenblatt? Ritze in eine frische Tonplatte eine 10-cm-Linie, lass sie trocknen, brenne sie und miss nach: 100 minus Messwert in mm ergibt die Gesamtschwindung in Prozent. Trag sie in ein Feld ein und lass das andere auf 0.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq8q">Welche Rolle spielt die Plattenstärke?</summary>
+        <p data-i18n="faq8a">Beim Rollen wird die Außenseite der Tonplatte gedehnt und die Innenseite gestaucht – ihre Länge behält ungefähr nur die Wandmitte. Gib deshalb die Plattenstärke an und wähle, ob deine Maße außen oder innen gemessen sind; das Tool rechnet die Schablone auf die Wandmitte um. Boden- und Deckelkreis werden mit dem Außenmaß gezeichnet, passend für eine Wand, die auf die Bodenplatte gesetzt wird.</p>
       </details>
       <details class="faq-item">
         <summary data-i18n="faq4q">Wofür ist die Klebelasche?</summary>
@@ -834,7 +997,7 @@
       </details>
       <details class="faq-item">
         <summary data-i18n="faq5q">Kann ich damit auch große Stücke bauen?</summary>
-        <p data-i18n="faq5a">Ja! Wenn die Schablone breiter als A4 ist, zeigt das Tool einen Hinweis. Du kannst auf A3 drucken oder mehrere A4-Blätter zusammenkleben. Nutze das Kontrolllineal auf der Schablone, um die Blätter exakt auszurichten.</p>
+        <p data-i18n="faq5a">Ja! Ist die Schablone größer als ein A4-Blatt, teilt der PDF-Download sie automatisch auf mehrere Seiten auf – mit Überlappung, Blattbezeichnungen (A1, A2 …) und einem Kontrolllineal auf jeder Seite. Ausdrucken, an den gestrichelten Linien überlappen und zusammenkleben.</p>
       </details>
     </div>
   </div>
@@ -860,8 +1023,8 @@ var T = {
     labelShowBottom: 'Bodenkreis anzeigen',
     cardResults: 'Ergebnisse',
     cardPreview: 'Vorschau',
-    btnPrint: 'Drucken (Originalgröße)',
-    printNote: 'Beim Drucken "Tatsächliche Größe" / 100% wählen, keine Skalierung!',
+    btnPrint: 'Drucken',
+    printNote: 'Große Schablonen verteilt das PDF automatisch auf mehrere A4-Seiten. Beim Drucken immer „Tatsächliche Größe“ / 100 % wählen.',
     partnerText: 'Schablone fertig? Jetzt das passende Material finden.',
     footerMade: 'Mit Liebe für Töpfer*innen gemacht',
     infoSlant: 'Schrägehöhe',
@@ -871,10 +1034,10 @@ var T = {
     errR2H: 'Unterer Radius und Höhe müssen größer als 0 sein.',
     errR1neg: 'Oberer Radius darf nicht negativ sein.',
     errR1geR2: 'Oberer Radius muss kleiner als unterer Radius sein.',
-    warnBig: 'Hinweis: Die Vorlage ist ca. {0} \u00d7 {1} cm gro\u00df und passt nicht auf ein A4-Blatt. Auf A3 drucken oder mehrere Bl\u00e4tter zusammenkleben.',
+    warnBig: 'Die Vorlage ist ca. {0} × {1} cm groß. Das PDF teilt sie auf {2} A4-Seiten zum Zusammenkleben auf.',
     tabLabel: 'Klebelasche',
-    bottomLabel: 'Boden (r={0} cm)',
-    topLabel: 'Deckel (r={0} cm)',
+    bottomLabel: 'Boden ({0})',
+    topLabel: 'Deckel ({0})',
     rulerLabel: 'cm (Kontrollmaß)',
     affClay: 'Töpferton',
     affWheel: 'Töpferscheiben',
@@ -888,13 +1051,44 @@ var T = {
     faq2q: 'Wie drucke ich die Schablone richtig?',
     faq2a: 'Wähle beim Drucken unbedingt „Tatsächliche Größe" oder „100%" in den Druckereinstellungen. Verwende nicht „An Seite anpassen". Die Schablone enthält ein Kontrolllineal — miss es mit einem echten Lineal nach, um sicherzustellen, dass der Ausdruck korrekt ist.',
     faq3q: 'Welche Maße brauche ich?',
-    faq3a: 'Du brauchst drei Maße: den oberen Radius (Öffnung deines Stücks), den unteren Radius (Boden) und die Höhe. Der obere Radius muss kleiner als der untere sein. Alle Maße werden in Zentimetern eingegeben.',
+    faq3a: 'Du brauchst drei Maße: oben (Öffnung), unten (Boden) und die Höhe – wahlweise als Radius oder Durchmesser. Das obere Maß muss kleiner als das untere sein. Alle Maße in Zentimetern; gemeint sind die Maße des fertig gebrannten Stücks.',
     faq4q: 'Wofür ist die Klebelasche?',
     faq4a: 'Die Klebelasche ist ein schmaler Streifen am Rand der Schablone. Wenn du die Tonplatte zum Kegel rollst, überlappen sich die Kanten an der Lasche — dort kannst du einritzen, Schlicker auftragen und die Naht sauber verbinden.',
     faq5q: 'Kann ich damit auch große Stücke bauen?',
-    faq5a: 'Ja! Wenn die Schablone breiter als A4 ist, zeigt das Tool einen Hinweis. Du kannst auf A3 drucken oder mehrere A4-Blätter zusammenkleben. Nutze das Kontrolllineal auf der Schablone, um die Blätter exakt auszurichten.',
+    faq5a: 'Ja! Ist die Schablone größer als ein A4-Blatt, teilt der PDF-Download sie automatisch auf mehrere Seiten auf – mit Überlappung, Blattbezeichnungen (A1, A2 …) und einem Kontrolllineal auf jeder Seite. Ausdrucken, an den gestrichelten Linien überlappen und zusammenkleben.',
     faq6q: 'Was ist der Unterschied zwischen Höhe und Schrägehöhe?',
-    faq6a: 'Die Höhe ist der senkrechte Abstand zwischen Ober- und Unterkante deines Stücks — also wie hoch die fertige Vase oder Schale wird. Die Schrägehöhe ist die tatsächliche Länge der schrägen Außenwand. Da die Wand nicht gerade nach oben geht, sondern schräg zuläuft, ist die Schrägehöhe immer größer als die Höhe. Das Tool berechnet die Schrägehöhe automatisch — du gibst nur die Höhe ein.'
+    faq6a: 'Die Höhe ist der senkrechte Abstand zwischen Ober- und Unterkante deines Stücks — also wie hoch die fertige Vase oder Schale wird. Die Schrägehöhe ist die tatsächliche Länge der schrägen Außenwand. Da die Wand nicht gerade nach oben geht, sondern schräg zuläuft, ist die Schrägehöhe immer größer als die Höhe. Das Tool berechnet die Schrägehöhe automatisch — du gibst nur die Höhe ein.',
+    unitRadius: 'Radius',
+    unitDiameter: 'Durchmesser',
+    labelD1: 'Oberer Durchmesser Ø<sub>1</sub>',
+    labelD2: 'Unterer Durchmesser Ø<sub>2</sub>',
+    cardClay: 'Ton & Wandstärke',
+    labelDry: 'Trockenschwindung',
+    labelFire: 'Brennschwindung',
+    labelThick: 'Plattenstärke',
+    labelSide: 'Maße gemessen',
+    sideOuter: 'Außen',
+    sideInner: 'Innen',
+    clayHint: 'Trag die Schwindung aus dem Datenblatt deines Tons ein – die Schablone wird dann so vergrößert, dass das gebrannte Stück deine Wunschmaße hat. Mit Plattenstärke wird auf die Wandmitte umgerechnet. Bei 0 entspricht die Schablone exakt deinen Maßen.',
+    infoShrink: 'Gesamtschwindung',
+    wetDims: 'Maße im nassen Zustand (direkt nach dem Aufbauen): {0}',
+    wetTop: 'oben',
+    wetBottom: 'unten',
+    wetHeight: 'Höhe',
+    errNeg: 'Werte dürfen nicht negativ sein.',
+    errShrink: 'Trocken- und Brennschwindung müssen jeweils unter 30 % liegen.',
+    errThick: 'Die Plattenstärke ist zu groß für die obere Öffnung.',
+    btnPdf: 'PDF herunterladen',
+    btnSvg: 'SVG',
+    btnLink: 'Link kopieren',
+    linkCopied: 'Link kopiert!',
+    pdfFooterTile: 'Blatt {0} · Seite {1} von {2} · An der gestrichelten Linie zuschneiden, auf das Nachbarblatt legen und festkleben',
+    pdfFooterSingle: 'Seite 1 von 1 · Mit „Tatsächliche Größe“ / 100 % drucken',
+    pdfRuler: '5 cm – mit Lineal nachmessen',
+    faq7q: 'Wie berücksichtige ich die Schwindung des Tons?',
+    faq7a: 'Ton schrumpft beim Trocknen und Brennen – je nach Masse insgesamt etwa 5–15 %. Trag Trocken- und Brennschwindung aus dem Datenblatt deines Tons ein; das Tool vergrößert die Schablone so, dass das gebrannte Stück deine Wunschmaße hat. Gerechnet wird mit Nassmaß = Endmaß ÷ (1 − Schwindung), weil Schwindung auf das Nassmaß bezogen wird – einfach die Prozente aufzuschlagen ergibt ein zu kleines Stück. Kein Datenblatt? Ritze in eine frische Tonplatte eine 10-cm-Linie, lass sie trocknen, brenne sie und miss nach: 100 minus Messwert in mm ergibt die Gesamtschwindung in Prozent. Trag sie in ein Feld ein und lass das andere auf 0.',
+    faq8q: 'Welche Rolle spielt die Plattenstärke?',
+    faq8a: 'Beim Rollen wird die Außenseite der Tonplatte gedehnt und die Innenseite gestaucht – ihre Länge behält ungefähr nur die Wandmitte. Gib deshalb die Plattenstärke an und wähle, ob deine Maße außen oder innen gemessen sind; das Tool rechnet die Schablone auf die Wandmitte um. Boden- und Deckelkreis werden mit dem Außenmaß gezeichnet, passend für eine Wand, die auf die Bodenplatte gesetzt wird.'
   },
   en: {
     title: 'Cone Template Generator',
@@ -907,8 +1101,8 @@ var T = {
     labelShowBottom: 'Show bottom circle',
     cardResults: 'Results',
     cardPreview: 'Preview',
-    btnPrint: 'Print (actual size)',
-    printNote: 'When printing, choose "Actual size" / 100%, no scaling!',
+    btnPrint: 'Print',
+    printNote: 'The PDF automatically splits large templates across several A4 pages. Always print at "Actual size" / 100 %.',
     partnerText: 'Template done? Find the right materials.',
     footerMade: 'Made with love for potters',
     infoSlant: 'Slant height',
@@ -918,10 +1112,10 @@ var T = {
     errR2H: 'Bottom radius and height must be greater than 0.',
     errR1neg: 'Top radius must not be negative.',
     errR1geR2: 'Top radius must be smaller than bottom radius.',
-    warnBig: 'Note: The template is approx. {0} \u00d7 {1} cm and won\'t fit on an A4 sheet. Print on A3 or tape several sheets together.',
+    warnBig: 'The template is approx. {0} × {1} cm. The PDF splits it across {2} A4 pages to tape together.',
     tabLabel: 'Glue tab',
-    bottomLabel: 'Bottom (r={0} cm)',
-    topLabel: 'Top (r={0} cm)',
+    bottomLabel: 'Bottom ({0})',
+    topLabel: 'Top ({0})',
     rulerLabel: 'cm (control measure)',
     affClay: 'Pottery Clay',
     affWheel: 'Pottery Wheels',
@@ -935,13 +1129,44 @@ var T = {
     faq2q: 'How do I print the template at the correct size?',
     faq2a: 'When printing, select "Actual Size" or "100%" in your printer settings. Do not use "Fit to Page". The template includes a control ruler — measure it with a physical ruler to verify the print is accurate.',
     faq3q: 'What measurements do I need?',
-    faq3a: 'You need three measurements: the top radius (opening of your piece), the bottom radius (base), and the height. The top radius must be smaller than the bottom radius. All measurements are in centimeters.',
+    faq3a: 'You need three measurements: top (opening), bottom (base) and height – as radius or diameter. The top must be smaller than the bottom. All values in centimeters, meaning the size of the finished, fired piece.',
     faq4q: 'What is the glue tab for?',
     faq4a: 'The glue tab is a narrow strip along one edge of the template. When you roll the clay slab into a cone, the edges overlap at the tab — score, apply slip, and join the seam securely.',
     faq5q: 'Can I use this for large pieces?',
-    faq5a: 'Yes! If the template is wider than A4, the tool will show a warning. You can print on A3 paper or tape multiple A4 sheets together. Use the control ruler on the template to align the sheets precisely.',
+    faq5a: 'Yes! If the template is larger than an A4 sheet, the PDF download automatically splits it across several pages – with overlap, sheet labels (A1, A2 …) and a control ruler on every page. Print, overlap at the dashed lines and tape together.',
     faq6q: 'What is the difference between height and slant height?',
-    faq6a: 'The height is the vertical distance between the top and bottom of your piece — how tall the finished vase or bowl will be. The slant height is the actual length of the angled outer wall. Since the wall tapers rather than going straight up, the slant height is always greater than the height. The tool calculates the slant height automatically — you only need to enter the height.'
+    faq6a: 'The height is the vertical distance between the top and bottom of your piece — how tall the finished vase or bowl will be. The slant height is the actual length of the angled outer wall. Since the wall tapers rather than going straight up, the slant height is always greater than the height. The tool calculates the slant height automatically — you only need to enter the height.',
+    unitRadius: 'Radius',
+    unitDiameter: 'Diameter',
+    labelD1: 'Top Diameter Ø<sub>1</sub>',
+    labelD2: 'Bottom Diameter Ø<sub>2</sub>',
+    cardClay: 'Clay & wall thickness',
+    labelDry: 'Drying shrinkage',
+    labelFire: 'Firing shrinkage',
+    labelThick: 'Slab thickness',
+    labelSide: 'Measured on the',
+    sideOuter: 'Outside',
+    sideInner: 'Inside',
+    clayHint: 'Enter the shrinkage from your clay\'s data sheet – the template is enlarged so the fired piece ends up at your target size. With a slab thickness, it is calculated for the middle of the wall. At 0, the template matches your measurements exactly.',
+    infoShrink: 'Total shrinkage',
+    wetDims: 'Wet dimensions (right after building): {0}',
+    wetTop: 'top',
+    wetBottom: 'bottom',
+    wetHeight: 'height',
+    errNeg: 'Values must not be negative.',
+    errShrink: 'Drying and firing shrinkage must each be below 30 %.',
+    errThick: 'The slab is too thick for the top opening.',
+    btnPdf: 'Download PDF',
+    btnSvg: 'SVG',
+    btnLink: 'Copy link',
+    linkCopied: 'Link copied!',
+    pdfFooterTile: 'Sheet {0} · Page {1} of {2} · Trim at the dashed line, lay onto the neighbouring sheet and tape',
+    pdfFooterSingle: 'Page 1 of 1 · Print at "Actual size" / 100 %',
+    pdfRuler: '5 cm – check with a ruler',
+    faq7q: 'How do I account for clay shrinkage?',
+    faq7a: 'Clay shrinks while drying and firing – about 5–15 % in total, depending on the clay body. Enter the drying and firing shrinkage from your clay\'s data sheet and the tool enlarges the template so the fired piece reaches your target size. It uses wet size = fired size ÷ (1 − shrinkage), because shrinkage is measured relative to the wet size – simply adding the percentage gives a piece that is too small. No data sheet? Scratch a 10 cm line into a fresh slab, let it dry, fire it and measure: 100 minus the measured length in mm is the total shrinkage in percent. Enter it in one field and leave the other at 0.',
+    faq8q: 'Why does slab thickness matter?',
+    faq8a: 'When you roll a slab, the outside stretches and the inside compresses – only the middle of the wall keeps (approximately) its length. So enter the slab thickness and choose whether your measurements are outside or inside; the tool converts the template to the middle of the wall. The bottom and top circles are drawn at the outside size, suitable for a wall that sits on top of the base slab.'
   },
   es: {
     title: 'Generador de Cono',
@@ -954,8 +1179,8 @@ var T = {
     labelShowBottom: 'Mostrar c\u00edrculo de base',
     cardResults: 'Resultados',
     cardPreview: 'Vista previa',
-    btnPrint: 'Imprimir (tama\u00f1o real)',
-    printNote: 'Al imprimir, elige "Tama\u00f1o real" / 100%, \u00a1sin escalar!',
+    btnPrint: 'Imprimir',
+    printNote: 'El PDF reparte automáticamente las plantillas grandes en varias hojas A4. Imprime siempre a "Tamaño real" / 100 %.',
     partnerText: '\u00bfPlantilla lista? Encuentra los materiales adecuados.',
     footerMade: 'Hecho con amor para ceramistas',
     infoSlant: 'Generatriz',
@@ -965,10 +1190,10 @@ var T = {
     errR2H: 'El radio inferior y la altura deben ser mayores que 0.',
     errR1neg: 'El radio superior no puede ser negativo.',
     errR1geR2: 'El radio superior debe ser menor que el radio inferior.',
-    warnBig: 'Nota: La plantilla mide aprox. {0} \u00d7 {1} cm y no cabe en una hoja A4. Imprime en A3 o une varias hojas.',
+    warnBig: 'La plantilla mide aprox. {0} × {1} cm. El PDF la reparte en {2} hojas A4 para unir con cinta.',
     tabLabel: 'Pesta\u00f1a',
-    bottomLabel: 'Base (r={0} cm)',
-    topLabel: 'Tapa (r={0} cm)',
+    bottomLabel: 'Base ({0})',
+    topLabel: 'Tapa ({0})',
     rulerLabel: 'cm (medida de control)',
     affClay: 'Arcilla',
     affWheel: 'Tornos',
@@ -982,13 +1207,44 @@ var T = {
     faq2q: '\u00bfC\u00f3mo imprimo la plantilla al tama\u00f1o correcto?',
     faq2a: 'Al imprimir, selecciona "Tama\u00f1o real" o "100%" en la configuraci\u00f3n de tu impresora. No uses "Ajustar a la p\u00e1gina". La plantilla incluye una regla de control — m\u00eddela con una regla f\u00edsica para verificar la precisi\u00f3n.',
     faq3q: '\u00bfQu\u00e9 medidas necesito?',
-    faq3a: 'Necesitas tres medidas: el radio superior (abertura), el radio inferior (base) y la altura. El radio superior debe ser menor que el inferior. Todas las medidas son en cent\u00edmetros.',
+    faq3a: 'Necesitas tres medidas: arriba (abertura), abajo (base) y la altura, como radio o diámetro. La medida superior debe ser menor que la inferior. Todo en centímetros y referido a la pieza terminada y cocida.',
     faq4q: '\u00bfPara qu\u00e9 sirve la pesta\u00f1a de pegado?',
     faq4a: 'La pesta\u00f1a de pegado es una tira estrecha en un borde de la plantilla. Al enrollar la plancha de arcilla en forma de cono, los bordes se superponen en la pesta\u00f1a — rayar, aplicar barbotina y unir la costura de forma segura.',
     faq5q: '\u00bfPuedo usarlo para piezas grandes?',
-    faq5a: '\u00a1S\u00ed! Si la plantilla es m\u00e1s ancha que A4, la herramienta mostrar\u00e1 un aviso. Puedes imprimir en papel A3 o pegar varias hojas A4. Usa la regla de control en la plantilla para alinear las hojas con precisi\u00f3n.',
+    faq5a: '¡Sí! Si la plantilla es más grande que una hoja A4, la descarga en PDF la reparte automáticamente en varias páginas, con superposición, nombres de hoja (A1, A2…) y una regla de control en cada página. Imprime, superpón en las líneas discontinuas y pega.',
     faq6q: '\u00bfCu\u00e1l es la diferencia entre altura y generatriz?',
-    faq6a: 'La altura es la distancia vertical entre la parte superior e inferior de tu pieza — lo alto que ser\u00e1 el jarr\u00f3n o cuenco terminado. La generatriz es la longitud real de la pared exterior inclinada. Como la pared se estrecha en lugar de ir recta hacia arriba, la generatriz siempre es mayor que la altura. La herramienta calcula la generatriz autom\u00e1ticamente — solo necesitas introducir la altura.'
+    faq6a: 'La altura es la distancia vertical entre la parte superior e inferior de tu pieza — lo alto que ser\u00e1 el jarr\u00f3n o cuenco terminado. La generatriz es la longitud real de la pared exterior inclinada. Como la pared se estrecha en lugar de ir recta hacia arriba, la generatriz siempre es mayor que la altura. La herramienta calcula la generatriz autom\u00e1ticamente — solo necesitas introducir la altura.',
+    unitRadius: 'Radio',
+    unitDiameter: 'Diámetro',
+    labelD1: 'Diámetro superior Ø<sub>1</sub>',
+    labelD2: 'Diámetro inferior Ø<sub>2</sub>',
+    cardClay: 'Arcilla y grosor de pared',
+    labelDry: 'Contracción en secado',
+    labelFire: 'Contracción en cocción',
+    labelThick: 'Grosor de la plancha',
+    labelSide: 'Medidas tomadas',
+    sideOuter: 'Por fuera',
+    sideInner: 'Por dentro',
+    clayHint: 'Introduce la contracción de la ficha técnica de tu arcilla: la plantilla se amplía para que la pieza cocida tenga las medidas deseadas. Con el grosor de la plancha se calcula sobre el centro de la pared. Con 0, la plantilla corresponde exactamente a tus medidas.',
+    infoShrink: 'Contracción total',
+    wetDims: 'Medidas en húmedo (justo después de montar): {0}',
+    wetTop: 'arriba',
+    wetBottom: 'abajo',
+    wetHeight: 'altura',
+    errNeg: 'Los valores no pueden ser negativos.',
+    errShrink: 'La contracción en secado y en cocción debe ser inferior al 30 % cada una.',
+    errThick: 'La plancha es demasiado gruesa para la abertura superior.',
+    btnPdf: 'Descargar PDF',
+    btnSvg: 'SVG',
+    btnLink: 'Copiar enlace',
+    linkCopied: '¡Enlace copiado!',
+    pdfFooterTile: 'Hoja {0} · Página {1} de {2} · Recorta por la línea discontinua, colócala sobre la hoja vecina y pega',
+    pdfFooterSingle: 'Página 1 de 1 · Imprimir a "Tamaño real" / 100 %',
+    pdfRuler: '5 cm – comprueba con una regla',
+    faq7q: '¿Cómo tengo en cuenta la contracción de la arcilla?',
+    faq7a: 'La arcilla se contrae al secarse y al cocerse: en total, alrededor de un 5–15 % según la pasta. Introduce la contracción en secado y en cocción de la ficha técnica y la herramienta ampliará la plantilla para que la pieza cocida tenga tus medidas. Se calcula medida en húmedo = medida final ÷ (1 − contracción), porque la contracción se refiere a la medida en húmedo; sumar simplemente el porcentaje da una pieza demasiado pequeña. ¿Sin ficha técnica? Marca una línea de 10 cm en una plancha fresca, déjala secar, cuécela y mide: 100 menos la longitud medida en mm es la contracción total en porcentaje. Introdúcela en un campo y deja el otro en 0.',
+    faq8q: '¿Qué importancia tiene el grosor de la plancha?',
+    faq8a: 'Al enrollar la plancha, la cara exterior se estira y la interior se comprime; solo el centro de la pared conserva (aproximadamente) su longitud. Por eso introduce el grosor y elige si tus medidas son exteriores o interiores: la herramienta calcula la plantilla para el centro de la pared. Los círculos de base y tapa se dibujan con la medida exterior, para una pared que se apoya sobre la plancha de la base.'
   },
   fr: {
     title: 'G\u00e9n\u00e9rateur de c\u00f4ne',
@@ -1001,8 +1257,8 @@ var T = {
     labelShowBottom: 'Afficher le cercle de base',
     cardResults: 'R\u00e9sultats',
     cardPreview: 'Aper\u00e7u',
-    btnPrint: 'Imprimer (taille r\u00e9elle)',
-    printNote: 'Lors de l\'impression, choisissez \u00ab Taille r\u00e9elle \u00bb / 100 %, sans mise \u00e0 l\'\u00e9chelle !',
+    btnPrint: 'Imprimer',
+    printNote: 'Le PDF répartit automatiquement les grands gabarits sur plusieurs pages A4. Imprimez toujours en « Taille réelle » / 100 %.',
     partnerText: 'Gabarit termin\u00e9 ? Trouvez les bons mat\u00e9riaux.',
     footerMade: 'Fait avec amour pour les c\u00e9ramistes',
     infoSlant: 'Hauteur inclin\u00e9e',
@@ -1012,10 +1268,10 @@ var T = {
     errR2H: 'Le rayon inf\u00e9rieur et la hauteur doivent \u00eatre sup\u00e9rieurs \u00e0 0.',
     errR1neg: 'Le rayon sup\u00e9rieur ne doit pas \u00eatre n\u00e9gatif.',
     errR1geR2: 'Le rayon sup\u00e9rieur doit \u00eatre inf\u00e9rieur au rayon inf\u00e9rieur.',
-    warnBig: 'Remarque : le gabarit mesure env. {0} \u00d7 {1} cm et ne tient pas sur une feuille A4. Imprimez en A3 ou assemblez plusieurs feuilles.',
+    warnBig: 'Le gabarit mesure env. {0} × {1} cm. Le PDF le répartit sur {2} pages A4 à assembler.',
     tabLabel: 'Languette',
-    bottomLabel: 'Fond (r={0} cm)',
-    topLabel: 'Couvercle (r={0} cm)',
+    bottomLabel: 'Fond ({0})',
+    topLabel: 'Couvercle ({0})',
     rulerLabel: 'cm (mesure de contr\u00f4le)',
     affClay: 'Argile',
     affWheel: 'Tours de potier',
@@ -1029,13 +1285,44 @@ var T = {
     faq2q: 'Comment imprimer le gabarit \u00e0 la bonne taille ?',
     faq2a: 'Lors de l\'impression, s\u00e9lectionnez « Taille r\u00e9elle » ou « 100% ». N\'utilisez pas « Ajuster \u00e0 la page ». Le gabarit comprend une r\u00e8gle de contr\u00f4le — mesurez-la avec une r\u00e8gle physique pour v\u00e9rifier la pr\u00e9cision.',
     faq3q: 'Quelles mesures faut-il ?',
-    faq3a: 'Vous avez besoin de trois mesures : le rayon sup\u00e9rieur (ouverture), le rayon inf\u00e9rieur (base) et la hauteur. Le rayon sup\u00e9rieur doit \u00eatre inf\u00e9rieur au rayon inf\u00e9rieur. Toutes les mesures sont en centim\u00e8tres.',
+    faq3a: 'Il vous faut trois mesures : en haut (ouverture), en bas (base) et la hauteur, en rayon ou en diamètre. La mesure du haut doit être inférieure à celle du bas. Tout en centimètres, pour la pièce finie et cuite.',
     faq4q: '\u00c0 quoi sert la languette de collage ?',
     faq4a: 'La languette de collage est une bande \u00e9troite sur un bord du gabarit. Lorsque vous roulez la plaque d\'argile en c\u00f4ne, les bords se chevauchent au niveau de la languette — grattez, appliquez de la barbotine et assemblez solidement.',
     faq5q: 'Puis-je l\'utiliser pour de grandes pi\u00e8ces ?',
-    faq5a: 'Oui ! Si le gabarit est plus large que le format A4, l\'outil affichera un avertissement. Vous pouvez imprimer sur papier A3 ou assembler plusieurs feuilles A4. Utilisez la r\u00e8gle de contr\u00f4le pour aligner les feuilles avec pr\u00e9cision.',
+    faq5a: 'Oui ! Si le gabarit dépasse une feuille A4, le PDF le répartit automatiquement sur plusieurs pages, avec chevauchement, noms de feuille (A1, A2…) et une règle de contrôle sur chaque page. Imprimez, superposez sur les lignes pointillées et collez.',
     faq6q: 'Quelle est la diff\u00e9rence entre hauteur et hauteur inclin\u00e9e ?',
-    faq6a: 'La hauteur est la distance verticale entre le haut et le bas de votre pi\u00e8ce — la taille finale du vase ou du bol. La hauteur inclin\u00e9e est la longueur r\u00e9elle de la paroi ext\u00e9rieure en biais. Comme la paroi se r\u00e9tr\u00e9cit au lieu de monter droit, la hauteur inclin\u00e9e est toujours sup\u00e9rieure \u00e0 la hauteur. L\'outil calcule la hauteur inclin\u00e9e automatiquement — vous n\'entrez que la hauteur.'
+    faq6a: 'La hauteur est la distance verticale entre le haut et le bas de votre pi\u00e8ce — la taille finale du vase ou du bol. La hauteur inclin\u00e9e est la longueur r\u00e9elle de la paroi ext\u00e9rieure en biais. Comme la paroi se r\u00e9tr\u00e9cit au lieu de monter droit, la hauteur inclin\u00e9e est toujours sup\u00e9rieure \u00e0 la hauteur. L\'outil calcule la hauteur inclin\u00e9e automatiquement — vous n\'entrez que la hauteur.',
+    unitRadius: 'Rayon',
+    unitDiameter: 'Diamètre',
+    labelD1: 'Diamètre supérieur Ø<sub>1</sub>',
+    labelD2: 'Diamètre inférieur Ø<sub>2</sub>',
+    cardClay: 'Argile et épaisseur de paroi',
+    labelDry: 'Retrait au séchage',
+    labelFire: 'Retrait à la cuisson',
+    labelThick: 'Épaisseur de la plaque',
+    labelSide: 'Mesures prises',
+    sideOuter: 'À l\'extérieur',
+    sideInner: 'À l\'intérieur',
+    clayHint: 'Saisissez le retrait indiqué sur la fiche technique de votre argile : le gabarit est agrandi pour que la pièce cuite ait les dimensions voulues. Avec l\'épaisseur de la plaque, le calcul se fait au milieu de la paroi. À 0, le gabarit correspond exactement à vos mesures.',
+    infoShrink: 'Retrait total',
+    wetDims: 'Dimensions à l\'état humide (juste après le montage) : {0}',
+    wetTop: 'haut',
+    wetBottom: 'bas',
+    wetHeight: 'hauteur',
+    errNeg: 'Les valeurs ne doivent pas être négatives.',
+    errShrink: 'Le retrait au séchage et à la cuisson doit chacun être inférieur à 30 %.',
+    errThick: 'La plaque est trop épaisse pour l\'ouverture supérieure.',
+    btnPdf: 'Télécharger le PDF',
+    btnSvg: 'SVG',
+    btnLink: 'Copier le lien',
+    linkCopied: 'Lien copié !',
+    pdfFooterTile: 'Feuille {0} · Page {1} sur {2} · Découpez sur la ligne pointillée, posez sur la feuille voisine et collez',
+    pdfFooterSingle: 'Page 1 sur 1 · Imprimer en « Taille réelle » / 100 %',
+    pdfRuler: '5 cm – à vérifier avec une règle',
+    faq7q: 'Comment tenir compte du retrait de l\'argile ?',
+    faq7a: 'L\'argile rétrécit au séchage et à la cuisson : environ 5 à 15 % au total selon la pâte. Saisissez le retrait au séchage et à la cuisson de la fiche technique ; l\'outil agrandit le gabarit pour que la pièce cuite atteigne vos dimensions. Le calcul est : dimension humide = dimension finale ÷ (1 − retrait), car le retrait se rapporte à la dimension humide ; ajouter simplement le pourcentage donne une pièce trop petite. Pas de fiche technique ? Tracez une ligne de 10 cm sur une plaque fraîche, laissez-la sécher, cuisez-la puis mesurez : 100 moins la longueur mesurée en mm donne le retrait total en pourcentage. Saisissez-le dans un champ et laissez l\'autre à 0.',
+    faq8q: 'Quel est le rôle de l\'épaisseur de la plaque ?',
+    faq8a: 'En roulant la plaque, la face extérieure s\'étire et la face intérieure se comprime ; seul le milieu de la paroi garde (à peu près) sa longueur. Indiquez donc l\'épaisseur et précisez si vos mesures sont extérieures ou intérieures : l\'outil calcule le gabarit pour le milieu de la paroi. Les cercles du fond et du couvercle sont tracés à la dimension extérieure, pour une paroi posée sur la plaque du fond.'
   },
   it: {
     title: 'Generatore di cono',
@@ -1048,8 +1335,8 @@ var T = {
     labelShowBottom: 'Mostra cerchio di base',
     cardResults: 'Risultati',
     cardPreview: 'Anteprima',
-    btnPrint: 'Stampa (dimensione reale)',
-    printNote: 'Durante la stampa, scegliere "Dimensione reale" / 100%, nessun ridimensionamento!',
+    btnPrint: 'Stampa',
+    printNote: 'Il PDF suddivide automaticamente i modelli grandi su più fogli A4. Stampa sempre a "Dimensione reale" / 100 %.',
     partnerText: 'Modello pronto? Trova i materiali giusti.',
     footerMade: 'Fatto con amore per i ceramisti',
     infoSlant: 'Altezza inclinata',
@@ -1059,10 +1346,10 @@ var T = {
     errR2H: 'Il raggio inferiore e l\'altezza devono essere maggiori di 0.',
     errR1neg: 'Il raggio superiore non deve essere negativo.',
     errR1geR2: 'Il raggio superiore deve essere minore del raggio inferiore.',
-    warnBig: 'Nota: il modello misura ca. {0} \u00d7 {1} cm e non entra in un foglio A4. Stampa su A3 o unisci pi\u00f9 fogli.',
+    warnBig: 'Il modello misura ca. {0} × {1} cm. Il PDF lo suddivide su {2} fogli A4 da unire con nastro adesivo.',
     tabLabel: 'Linguetta',
-    bottomLabel: 'Fondo (r={0} cm)',
-    topLabel: 'Coperchio (r={0} cm)',
+    bottomLabel: 'Fondo ({0})',
+    topLabel: 'Coperchio ({0})',
     rulerLabel: 'cm (misura di controllo)',
     affClay: 'Argilla',
     affWheel: 'Tornio',
@@ -1076,13 +1363,44 @@ var T = {
     faq2q: 'Come stampo il modello alla dimensione corretta?',
     faq2a: 'Durante la stampa, seleziona "Dimensione reale" o "100%" nelle impostazioni della stampante. Non usare "Adatta alla pagina". Il modello include un righello di controllo — misuralo con un righello fisico per verificare la precisione.',
     faq3q: 'Quali misure servono?',
-    faq3a: 'Servono tre misure: il raggio superiore (apertura), il raggio inferiore (base) e l\'altezza. Il raggio superiore deve essere minore di quello inferiore. Tutte le misure sono in centimetri.',
+    faq3a: 'Servono tre misure: sopra (apertura), sotto (base) e l\'altezza, come raggio o diametro. La misura superiore deve essere minore di quella inferiore. Tutto in centimetri, riferito al pezzo finito e cotto.',
     faq4q: 'A cosa serve la linguetta di incollaggio?',
     faq4a: 'La linguetta di incollaggio \u00e8 una striscia stretta su un bordo del modello. Quando arrotoli la lastra di argilla a cono, i bordi si sovrappongono alla linguetta — graffia, applica la barbottina e unisci la giuntura saldamente.',
     faq5q: 'Posso usarlo per pezzi grandi?',
-    faq5a: 'S\u00ec! Se il modello \u00e8 pi\u00f9 largo del formato A4, lo strumento mostrer\u00e0 un avviso. Puoi stampare su carta A3 o unire pi\u00f9 fogli A4. Usa il righello di controllo sul modello per allineare i fogli con precisione.',
+    faq5a: 'Sì! Se il modello è più grande di un foglio A4, il PDF lo suddivide automaticamente su più pagine, con sovrapposizione, nomi dei fogli (A1, A2…) e un righello di controllo su ogni pagina. Stampa, sovrapponi sulle linee tratteggiate e incolla.',
     faq6q: 'Qual \u00e8 la differenza tra altezza e altezza inclinata?',
-    faq6a: 'L\'altezza \u00e8 la distanza verticale tra la parte superiore e inferiore del pezzo — quanto sar\u00e0 alto il vaso o la ciotola finiti. L\'altezza inclinata \u00e8 la lunghezza effettiva della parete esterna inclinata. Poich\u00e9 la parete si restringe invece di salire dritta, l\'altezza inclinata \u00e8 sempre maggiore dell\'altezza. Lo strumento calcola l\'altezza inclinata automaticamente — basta inserire l\'altezza.'
+    faq6a: 'L\'altezza \u00e8 la distanza verticale tra la parte superiore e inferiore del pezzo — quanto sar\u00e0 alto il vaso o la ciotola finiti. L\'altezza inclinata \u00e8 la lunghezza effettiva della parete esterna inclinata. Poich\u00e9 la parete si restringe invece di salire dritta, l\'altezza inclinata \u00e8 sempre maggiore dell\'altezza. Lo strumento calcola l\'altezza inclinata automaticamente — basta inserire l\'altezza.',
+    unitRadius: 'Raggio',
+    unitDiameter: 'Diametro',
+    labelD1: 'Diametro superiore Ø<sub>1</sub>',
+    labelD2: 'Diametro inferiore Ø<sub>2</sub>',
+    cardClay: 'Argilla e spessore della parete',
+    labelDry: 'Ritiro in essiccazione',
+    labelFire: 'Ritiro in cottura',
+    labelThick: 'Spessore della lastra',
+    labelSide: 'Misure prese',
+    sideOuter: 'All\'esterno',
+    sideInner: 'All\'interno',
+    clayHint: 'Inserisci il ritiro indicato nella scheda tecnica della tua argilla: il modello viene ingrandito in modo che il pezzo cotto abbia le misure desiderate. Con lo spessore della lastra il calcolo avviene a metà parete. Con 0 il modello corrisponde esattamente alle tue misure.',
+    infoShrink: 'Ritiro totale',
+    wetDims: 'Misure da umido (subito dopo la costruzione): {0}',
+    wetTop: 'sopra',
+    wetBottom: 'sotto',
+    wetHeight: 'altezza',
+    errNeg: 'I valori non possono essere negativi.',
+    errShrink: 'Il ritiro in essiccazione e in cottura deve essere ciascuno inferiore al 30 %.',
+    errThick: 'La lastra è troppo spessa per l\'apertura superiore.',
+    btnPdf: 'Scarica PDF',
+    btnSvg: 'SVG',
+    btnLink: 'Copia link',
+    linkCopied: 'Link copiato!',
+    pdfFooterTile: 'Foglio {0} · Pagina {1} di {2} · Ritaglia sulla linea tratteggiata, appoggia sul foglio vicino e incolla',
+    pdfFooterSingle: 'Pagina 1 di 1 · Stampa a "Dimensione reale" / 100 %',
+    pdfRuler: '5 cm – verifica con un righello',
+    faq7q: 'Come tengo conto del ritiro dell\'argilla?',
+    faq7a: 'L\'argilla si ritira durante l\'essiccazione e la cottura: in totale circa il 5–15 % a seconda dell\'impasto. Inserisci il ritiro in essiccazione e in cottura dalla scheda tecnica e lo strumento ingrandirà il modello in modo che il pezzo cotto abbia le tue misure. Il calcolo è: misura da umido = misura finale ÷ (1 − ritiro), perché il ritiro si riferisce alla misura da umido; aggiungere semplicemente la percentuale dà un pezzo troppo piccolo. Niente scheda tecnica? Incidi una linea di 10 cm su una lastra fresca, lasciala essiccare, cuocila e misura: 100 meno la lunghezza misurata in mm è il ritiro totale in percentuale. Inseriscilo in un campo e lascia l\'altro a 0.',
+    faq8q: 'Che ruolo ha lo spessore della lastra?',
+    faq8a: 'Quando arrotoli la lastra, il lato esterno si allunga e quello interno si comprime: solo il centro della parete mantiene (circa) la sua lunghezza. Inserisci quindi lo spessore e scegli se le tue misure sono esterne o interne: lo strumento calcola il modello per il centro della parete. I cerchi di fondo e coperchio sono disegnati con la misura esterna, adatti a una parete appoggiata sulla lastra del fondo.'
   }
 };
 
@@ -1125,7 +1443,7 @@ var SEO = {
 function t(key) { return T[currentLang][key] || T['de'][key] || key; }
 
 // Same order as the visible FAQ list
-var FAQ_ORDER = [1, 2, 3, 6, 4, 5];
+var FAQ_ORDER = [1, 2, 3, 6, 7, 8, 4, 5];
 
 function buildFaqJsonLd() {
   return {
@@ -1142,15 +1460,9 @@ function buildFaqJsonLd() {
   };
 }
 
-function setLang(lang, pushState) {
+function setLang(lang) {
   currentLang = lang;
   document.documentElement.lang = lang;
-
-  // Update URL parameter (without page reload)
-  if (pushState !== false) {
-    var newUrl = window.location.pathname + '?lang=' + lang;
-    history.replaceState(null, '', newUrl);
-  }
 
   // Update SEO meta tags
   var seo = SEO[lang] || SEO['de'];
@@ -1177,214 +1489,556 @@ function setLang(lang, pushState) {
   // Keep FAQ structured data in sync with the visible FAQ
   document.getElementById('faq-jsonld').textContent = JSON.stringify(buildFaqJsonLd(), null, 2);
 
-  // Re-calculate to update dynamic text
+  // Re-calculate to update dynamic text (also writes the URL)
   update();
 }
 
 // ===================== Calculator =====================
-function update() {
-  var r1 = parseFloat(document.getElementById('r1').value) || 0;
-  var r2 = parseFloat(document.getElementById('r2').value) || 0;
-  var h  = parseFloat(document.getElementById('h').value)  || 0;
-  var tw = parseFloat(document.getElementById('tab').value) || 0;
-  var showBottom = document.getElementById('showBottom').checked;
-  var infoEl = document.getElementById('info');
-  var warnEl = document.getElementById('warning-area');
-  var prevEl = document.getElementById('preview');
+var COL = { line: '#4a3f3a', aux: '#b5aaa2', label: '#8a7f78', seam: '#c4a68a' };
+var DEFAULTS = { r: { r1: 3, r2: 6 }, d: { r1: 6, r2: 12 }, h: 10, tab: 1, dry: 0, fire: 0, thick: 0 };
+var unitMode = 'r';   // 'r' = radius, 'd' = diameter
+var sideMode = 'o';   // 'o' = measured outside, 'i' = measured inside
+var lastModel = null;
 
-  if (r2 <= 0 || h <= 0) {
-    prevEl.innerHTML = '<div class="error">' + t('errR2H') + '</div>';
-    infoEl.innerHTML = ''; warnEl.innerHTML = ''; return;
+function val(id) { var v = parseFloat(document.getElementById(id).value); return isNaN(v) ? 0 : v; }
+function fmt(n, d) { return String(+n.toFixed(d === undefined ? 1 : d)); }
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+// --- Geometry helpers (cm, y axis pointing down) ---
+// Appends cubic Béziers approximating a circular arc from angle a0 to a1 (radians).
+function arcTo(cmds, cx, cy, r, a0, a1) {
+  var n = Math.max(1, Math.ceil(Math.abs(a1 - a0) / (Math.PI / 2) - 1e-9));
+  var da = (a1 - a0) / n, k = 4 / 3 * Math.tan(da / 4);
+  for (var i = 0; i < n; i++) {
+    var s = a0 + i * da, e = s + da;
+    var x0 = cx + r * Math.cos(s), y0 = cy + r * Math.sin(s);
+    var x3 = cx + r * Math.cos(e), y3 = cy + r * Math.sin(e);
+    cmds.push(['C', x0 - k * r * Math.sin(s), y0 + k * r * Math.cos(s),
+                    x3 + k * r * Math.sin(e), y3 - k * r * Math.cos(e), x3, y3]);
   }
-  if (r1 < 0) {
-    prevEl.innerHTML = '<div class="error">' + t('errR1neg') + '</div>';
-    infoEl.innerHTML = ''; warnEl.innerHTML = ''; return;
+}
+
+function circlePath(cx, cy, r) {
+  var c = [['M', cx + r, cy]];
+  arcTo(c, cx, cy, r, 0, 2 * Math.PI);
+  c.push(['Z']);
+  return c;
+}
+
+function line(x1, y1, x2, y2, color, w, dash) {
+  return { t: 'path', cmds: [['M', x1, y1], ['L', x2, y2]], stroke: color, w: w, dash: dash || null };
+}
+
+function text(x, y, str, size, color, anchor, rot) {
+  return { t: 'text', x: x, y: y, s: str, size: size, color: color, anchor: anchor || 'middle', rot: rot || 0 };
+}
+
+// Rough Helvetica/Inter advance widths (em) — used for text extents and PDF centering
+function textWidth(str, size) {
+  var w = 0;
+  for (var i = 0; i < str.length; i++) {
+    var c = str.charAt(i);
+    w += /[0-9]/.test(c) ? 0.556 : c === ' ' ? 0.278 : /[.,:;·()|'’\-–]/.test(c) ? 0.3
+       : /[A-ZÄÖÜÉÈÀÁÍÓÚØ]/.test(c) ? 0.68 : /[mwMW]/.test(c) ? 0.83 : 0.52;
   }
-  if (r1 >= r2) {
-    prevEl.innerHTML = '<div class="error">' + t('errR1geR2') + '</div>';
-    infoEl.innerHTML = ''; warnEl.innerHTML = ''; return;
+  return w * size;
+}
+
+function bboxOf(shapes) {
+  var b = { x0: 1e9, y0: 1e9, x1: -1e9, y1: -1e9 };
+  function add(x, y) {
+    if (x < b.x0) b.x0 = x; if (x > b.x1) b.x1 = x;
+    if (y < b.y0) b.y0 = y; if (y > b.y1) b.y1 = y;
   }
-
-  // --- Calculation ---
-  var dr = r2 - r1;
-  var l = Math.sqrt(h * h + dr * dr);
-  var R1, R2t, theta;
-  if (r1 === 0) {
-    R1 = 0; R2t = l;
-    theta = 2 * Math.PI * r2 / l;
-  } else {
-    R1 = r1 * l / dr;
-    R2t = r2 * l / dr;
-    theta = 2 * Math.PI * dr / l;
-  }
-  var thetaDeg = theta * 180 / Math.PI;
-
-  // Info
-  infoEl.innerHTML =
-    '<div class="info-chip"><div class="label">' + t('infoSlant') + '</div><div class="value">' + l.toFixed(2) + ' cm</div></div>' +
-    '<div class="info-chip"><div class="label">' + t('infoAngle') + '</div><div class="value">' + thetaDeg.toFixed(1) + '\u00B0</div></div>' +
-    '<div class="info-chip"><div class="label">' + t('infoInner') + '</div><div class="value">' + R1.toFixed(2) + ' cm</div></div>' +
-    '<div class="info-chip"><div class="label">' + t('infoOuter') + '</div><div class="value">' + R2t.toFixed(2) + ' cm</div></div>';
-
-  // --- SVG ---
-  var hth = theta / 2;
-  var aS = -Math.PI / 2 - hth;
-  var aE = -Math.PI / 2 + hth;
-
-  function px(R, a) { return R * Math.cos(a); }
-  function py(R, a) { return R * Math.sin(a); }
-
-  var oSx = px(R2t,aS), oSy = py(R2t,aS);
-  var oEx = px(R2t,aE), oEy = py(R2t,aE);
-  var iSx = px(R1,aS),  iSy = py(R1,aS);
-  var iEx = px(R1,aE),  iEy = py(R1,aE);
-  var la = theta > Math.PI ? 1 : 0;
-
-  var mp;
-  if (r1 === 0) {
-    mp = 'M 0 0 L ' + oSx + ' ' + oSy +
-         ' A ' + R2t + ' ' + R2t + ' 0 ' + la + ' 1 ' + oEx + ' ' + oEy + ' Z';
-  } else {
-    mp = 'M ' + iSx + ' ' + iSy +
-         ' L ' + oSx + ' ' + oSy +
-         ' A ' + R2t + ' ' + R2t + ' 0 ' + la + ' 1 ' + oEx + ' ' + oEy +
-         ' L ' + iEx + ' ' + iEy +
-         ' A ' + R1 + ' ' + R1 + ' 0 ' + la + ' 0 ' + iSx + ' ' + iSy + ' Z';
-  }
-
-  // Glue tab
-  var tabSvg = '';
-  if (tw > 0) {
-    var npx2 = Math.sin(aS), npy2 = -Math.cos(aS);
-    var t1x, t1y, t2x, t2y, t3x, t3y, t4x, t4y;
-    if (r1 === 0) {
-      t1x = 0; t1y = 0;
-      t2x = oSx; t2y = oSy;
-      t3x = oSx + npx2 * tw; t3y = oSy + npy2 * tw;
-      t4x = npx2 * tw * 0.15; t4y = npy2 * tw * 0.15;
+  shapes.forEach(function(sh) {
+    if (sh.t === 'path') {
+      var px = 0, py = 0;
+      sh.cmds.forEach(function(c) {
+        if (c[0] === 'M' || c[0] === 'L') { px = c[1]; py = c[2]; add(px, py); }
+        else if (c[0] === 'C') {
+          for (var k = 1; k <= 16; k++) {
+            var u = k / 16, v = 1 - u;
+            add(v*v*v*px + 3*v*v*u*c[1] + 3*v*u*u*c[3] + u*u*u*c[5],
+                v*v*v*py + 3*v*v*u*c[2] + 3*v*u*u*c[4] + u*u*u*c[6]);
+          }
+          px = c[5]; py = c[6];
+        }
+      });
     } else {
-      t1x = iSx; t1y = iSy;
-      t2x = oSx; t2y = oSy;
-      t3x = oSx + npx2 * tw; t3y = oSy + npy2 * tw;
-      t4x = iSx + npx2 * tw * 0.7; t4y = iSy + npy2 * tw * 0.7;
+      var w = textWidth(sh.s, sh.size), a = sh.rot * Math.PI / 180;
+      var x0 = sh.anchor === 'middle' ? -w / 2 : 0;
+      [[x0, 0], [x0 + w, 0], [x0, -sh.size], [x0 + w, -sh.size]].forEach(function(p) {
+        add(sh.x + p[0] * Math.cos(a) - p[1] * Math.sin(a), sh.y + p[0] * Math.sin(a) + p[1] * Math.cos(a));
+      });
     }
-    tabSvg = '<path d="M ' + t1x + ' ' + t1y + ' L ' + t2x + ' ' + t2y +
-             ' L ' + t3x + ' ' + t3y + ' L ' + t4x + ' ' + t4y +
-             ' Z" fill="none" stroke="#b5aaa2" stroke-width="0.04" stroke-dasharray="0.2,0.12"/>';
-    var mx = (t1x + t3x) / 2, my = (t1y + t3y) / 2;
-    tabSvg += '<text x="' + mx + '" y="' + my + '" text-anchor="middle" font-size="0.35" fill="#b5aaa2" ' +
-              'transform="rotate(' + (aS * 180 / Math.PI + 90) + ' ' + mx + ' ' + my + ')">' + t('tabLabel') + '</text>';
-  }
+  });
+  return b;
+}
 
-  // --- Bounding Box ---
-  var pts = [[oSx,oSy],[oEx,oEy]];
-  if (r1 === 0) { pts.push([0,0]); } else { pts.push([iSx,iSy],[iEx,iEy]); }
-  if (tw > 0) {
-    var npx3 = Math.sin(aS), npy3 = -Math.cos(aS);
-    pts.push([oSx + npx3*tw, oSy + npy3*tw]);
-    if (r1 === 0) { pts.push([npx3*tw*0.15, npy3*tw*0.15]); }
-    else { pts.push([iSx + npx3*tw*0.7, iSy + npy3*tw*0.7]); }
+function rulerShapes(x, y) {
+  var out = [line(x, y, x + 5, y, COL.aux, 0.03)];
+  for (var j = 0; j <= 50; j++) {
+    var th = j % 10 === 0 ? 0.3 : j % 5 === 0 ? 0.18 : 0.1;
+    out.push(line(x + j / 10, y, x + j / 10, y - th, COL.aux, 0.02));
   }
-  var cards = [0, Math.PI/2, Math.PI, -Math.PI/2, -Math.PI];
-  for (var ci = 0; ci < cards.length; ci++) {
-    var a = cards[ci];
-    while (a < aS) a += 2*Math.PI;
-    if (a <= aE) pts.push([px(R2t,cards[ci]), py(R2t,cards[ci])]);
-  }
+  for (var k = 0; k <= 5; k++) out.push(text(x + k, y + 0.4, String(k), 0.28, COL.aux));
+  return out;
+}
 
-  var xMin=1e9, xMax=-1e9, yMin=1e9, yMax=-1e9;
-  for (var i = 0; i < pts.length; i++) {
-    if (pts[i][0] < xMin) xMin = pts[i][0];
-    if (pts[i][0] > xMax) xMax = pts[i][0];
-    if (pts[i][1] < yMin) yMin = pts[i][1];
-    if (pts[i][1] > yMax) yMax = pts[i][1];
-  }
+// --- Read inputs, validate, build the template model ---
+function readInputs() {
+  var k = unitMode === 'd' ? 0.5 : 1;
+  return {
+    r1: val('r1') * k, r2: val('r2') * k, h: val('h'), tab: val('tab'),
+    dry: val('dry'), fire: val('fire'), thick: val('thick'),
+    side: sideMode, showBottom: document.getElementById('showBottom').checked
+  };
+}
 
-  // Bottom circle
-  var bottomSvg = '';
-  if (showBottom) {
-    var bcY = yMax + 1.5 + r2;
-    bottomSvg = '<circle cx="0" cy="' + bcY + '" r="' + r2 + '" fill="none" stroke="#4a3f3a" stroke-width="0.05" stroke-dasharray="0.2,0.15"/>';
-    bottomSvg += '<line x1="-0.3" y1="' + bcY + '" x2="0.3" y2="' + bcY + '" stroke="#b5aaa2" stroke-width="0.02"/>';
-    bottomSvg += '<line x1="0" y1="' + (bcY-0.3) + '" x2="0" y2="' + (bcY+0.3) + '" stroke="#b5aaa2" stroke-width="0.02"/>';
-    bottomSvg += '<text x="0" y="' + (bcY + r2 + 0.6) + '" text-anchor="middle" font-size="0.4" fill="#8a7f78">' + t('bottomLabel').replace('{0}', r2) + '</text>';
-    if (r1 > 0) {
-      var tc2Y = bcY + r2 + 1.5 + r1;
-      bottomSvg += '<circle cx="0" cy="' + tc2Y + '" r="' + r1 + '" fill="none" stroke="#4a3f3a" stroke-width="0.05" stroke-dasharray="0.2,0.15"/>';
-      bottomSvg += '<line x1="-0.3" y1="' + tc2Y + '" x2="0.3" y2="' + tc2Y + '" stroke="#b5aaa2" stroke-width="0.02"/>';
-      bottomSvg += '<line x1="0" y1="' + (tc2Y-0.3) + '" x2="0" y2="' + (tc2Y+0.3) + '" stroke="#b5aaa2" stroke-width="0.02"/>';
-      bottomSvg += '<text x="0" y="' + (tc2Y + r1 + 0.6) + '" text-anchor="middle" font-size="0.4" fill="#8a7f78">' + t('topLabel').replace('{0}', r1) + '</text>';
-      var circlesBottom = tc2Y + r1 + 1;
-    } else {
-      var circlesBottom = bcY + r2 + 1;
-    }
-    if (circlesBottom > yMax) {
-      if (-r2 < xMin) xMin = -r2;
-      if (r2 > xMax) xMax = r2;
-      yMax = circlesBottom;
-    }
+function validate(p) {
+  if (p.r2 <= 0 || p.h <= 0) return 'errR2H';
+  if (p.r1 < 0) return 'errR1neg';
+  if (p.r1 >= p.r2) return 'errR1geR2';
+  if (p.tab < 0 || p.dry < 0 || p.fire < 0 || p.thick < 0) return 'errNeg';
+  if (p.dry >= 30 || p.fire >= 30) return 'errShrink';
+  return null;
+}
+
+function circleLabel(r) {
+  return unitMode === 'd' ? 'Ø ' + fmt(2 * r) + ' cm' : 'r = ' + fmt(r) + ' cm';
+}
+
+function buildModel(p) {
+  // Shrinkage is defined relative to the larger (wet) size: s = (wet - fired) / wet.
+  // Firing shrinkage refers to the dry size, so both combine multiplicatively.
+  var sTot = 1 - (1 - p.dry / 100) * (1 - p.fire / 100);
+  var f = 1 / (1 - sTot);                       // fired -> wet
+  var r1 = p.r1 * f, r2 = p.r2 * f, h = p.h * f;
+  var dr = r2 - r1, l = Math.sqrt(h * h + dr * dr);
+
+  // The rolled slab keeps its length at mid-wall. Shifting the wall by half the
+  // slab thickness (normal to the wall) changes the radius by (t/2) * l / h.
+  var half = (p.thick / 10) / 2 * l / h;
+  var sgn = p.side === 'o' ? -1 : 1;
+  var m1 = r1 + sgn * half, m2 = r2 + sgn * half;
+  if (p.r1 > 0 && m1 < 0) return { error: 'errThick' };
+  m1 = Math.max(0, m1);                         // closed cone: the apex stays at 0
+  var o1 = p.side === 'o' ? r1 : r1 + 2 * half; // outside radii for base/lid circles
+  var o2 = p.side === 'o' ? r2 : r2 + 2 * half;
+
+  // Unrolled frustum (slope unchanged by the offset, since dr stays the same)
+  var Rin = m1 * l / dr, Rout = m2 * l / dr, theta = 2 * Math.PI * dr / l;
+  var aS = -Math.PI / 2 - theta / 2, aE = -Math.PI / 2 + theta / 2;
+  function P(R, a) { return [R * Math.cos(a), R * Math.sin(a)]; }
+  var oS = P(Rout, aS), oE = P(Rout, aE), iS = P(Rin, aS), iE = P(Rin, aE);
+
+  var shapes = [];
+  var main = [['M', iS[0], iS[1]], ['L', oS[0], oS[1]]];
+  arcTo(main, 0, 0, Rout, aS, aE);
+  if (Rin > 0) { main.push(['L', iE[0], iE[1]]); arcTo(main, 0, 0, Rin, aE, aS); }
+  main.push(['Z']);
+  shapes.push({ t: 'path', cmds: main, stroke: COL.line, w: 0.05 });
+
+  // Glue tab on the start edge, pointing outwards
+  if (p.tab > 0) {
+    var nx = Math.sin(aS), ny = -Math.cos(aS), tw = p.tab;
+    var f4 = Rin > 0 ? 0.7 : 0.15;
+    var t3 = [oS[0] + nx * tw, oS[1] + ny * tw], t4 = [iS[0] + nx * tw * f4, iS[1] + ny * tw * f4];
+    shapes.push({ t: 'path', cmds: [['M', iS[0], iS[1]], ['L', oS[0], oS[1]], ['L', t3[0], t3[1]], ['L', t4[0], t4[1]], ['Z']],
+                  stroke: COL.aux, w: 0.04, dash: [0.2, 0.12] });
+    var mx = (iS[0] + t3[0]) / 2, my = (iS[1] + t3[1]) / 2;
+    shapes.push(text(mx, my, t('tabLabel'), 0.35, COL.aux, 'middle', aS * 180 / Math.PI + 90));
+  }
+  var bb = bboxOf(shapes);
+
+  // Base and lid circles (outside size, wet), side by side below the template
+  if (p.showBottom) {
+    var circles = [[o2, 'bottomLabel']];
+    if (p.r1 > 0) circles.push([o1, 'topLabel']);
+    var gap = 1.5, rowW = circles.reduce(function(s, c) { return s + 2 * c[0]; }, 0) + gap * (circles.length - 1);
+    var x = -rowW / 2, top = bb.y1 + 1.5;
+    circles.forEach(function(c) {
+      var cx = x + c[0], cy = top + c[0];
+      shapes.push({ t: 'path', cmds: circlePath(cx, cy, c[0]), stroke: COL.line, w: 0.05, dash: [0.2, 0.15] });
+      shapes.push(line(cx - 0.3, cy, cx + 0.3, cy, COL.aux, 0.02), line(cx, cy - 0.3, cx, cy + 0.3, COL.aux, 0.02));
+      shapes.push(text(cx, cy + c[0] + 0.6, t(c[1]).replace('{0}', circleLabel(c[0])), 0.4, COL.label));
+      x += 2 * c[0] + gap;
+    });
+    bb = bboxOf(shapes);
   }
 
   // Control ruler
-  var rY = yMax + 0.5;
-  var rX = xMin + 0.5;
-  var rulerSvg = '<line x1="' + rX + '" y1="' + rY + '" x2="' + (rX+5) + '" y2="' + rY + '" stroke="#b5aaa2" stroke-width="0.03"/>';
-  for (var j = 0; j <= 50; j++) {
-    var th2 = j % 10 === 0 ? 0.3 : j % 5 === 0 ? 0.18 : 0.1;
-    rulerSvg += '<line x1="' + (rX+j/10) + '" y1="' + rY + '" x2="' + (rX+j/10) + '" y2="' + (rY-th2) + '" stroke="#b5aaa2" stroke-width="0.02"/>';
-  }
-  for (var k = 0; k <= 5; k++) {
-    rulerSvg += '<text x="' + (rX+k) + '" y="' + (rY+0.4) + '" text-anchor="middle" font-size="0.28" fill="#b5aaa2">' + k + '</text>';
-  }
-  rulerSvg += '<text x="' + (rX+2.5) + '" y="' + (rY+0.8) + '" text-anchor="middle" font-size="0.28" fill="#b5aaa2">' + t('rulerLabel') + '</text>';
-  yMax = rY + 1.2;
+  var rx = bb.x0 + 0.5, ry = bb.y1 + 0.6;
+  shapes = shapes.concat(rulerShapes(rx, ry));
+  shapes.push(text(rx + 2.5, ry + 0.8, t('rulerLabel'), 0.28, COL.aux));
+  bb = bboxOf(shapes);
 
-  // Padding
   var pad = 0.8;
-  xMin -= pad; xMax += pad; yMin -= pad; yMax += pad;
-  var svgW = xMax - xMin;
-  var svgH = yMax - yMin;
+  return {
+    shapes: shapes,
+    bbox: { x: bb.x0 - pad, y: bb.y0 - pad, w: bb.x1 - bb.x0 + 2 * pad, h: bb.y1 - bb.y0 + 2 * pad },
+    info: { l: l, thetaDeg: theta * 180 / Math.PI, Rin: Rin, Rout: Rout, sTot: sTot, wet: { r1: r1, r2: r2, h: h } },
+    params: p
+  };
+}
 
-  // A4 check: printable area approx. 19 x 27.7 cm (1 cm margins), portrait or landscape
-  var A4W = 19, A4H = 27.7;
-  var fitsA4 = (svgW <= A4W && svgH <= A4H) || (svgW <= A4H && svgH <= A4W);
-  warnEl.innerHTML = fitsA4 ? '' :
-    '<div class="warning">' + t('warnBig').replace('{0}', svgW.toFixed(0)).replace('{1}', svgH.toFixed(0)) + '</div>';
+// --- SVG output ---
+function pathD(cmds) {
+  return cmds.map(function(c) {
+    return c[0] + (c.length > 1 ? ' ' + c.slice(1).map(function(n) { return +n.toFixed(4); }).join(' ') : '');
+  }).join(' ');
+}
 
-  var svg = '<svg xmlns="http://www.w3.org/2000/svg" ' +
-    'viewBox="' + xMin + ' ' + yMin + ' ' + svgW + ' ' + svgH + '" ' +
-    'width="' + svgW + 'cm" height="' + svgH + 'cm" ' +
-    'style="max-width:100%;height:auto;background:white">' +
-    '<path d="' + mp + '" fill="none" stroke="#4a3f3a" stroke-width="0.05"/>' +
-    tabSvg + bottomSvg + rulerSvg +
-    '<line x1="-0.15" y1="0" x2="0.15" y2="0" stroke="#d5ddd2" stroke-width="0.02"/>' +
-    '<line x1="0" y1="-0.15" x2="0" y2="0.15" stroke="#d5ddd2" stroke-width="0.02"/>' +
-    '</svg>';
+function toSVG(m, forFile) {
+  var b = m.bbox, out = [];
+  m.shapes.forEach(function(sh) {
+    if (sh.t === 'path') {
+      out.push('<path d="' + pathD(sh.cmds) + '" fill="none" stroke="' + sh.stroke + '" stroke-width="' + sh.w + '"' +
+        (sh.dash ? ' stroke-dasharray="' + sh.dash.join(',') + '"' : '') + ' stroke-linejoin="round"/>');
+    } else {
+      out.push('<text x="' + +sh.x.toFixed(4) + '" y="' + +sh.y.toFixed(4) + '" text-anchor="' + sh.anchor + '" font-size="' + sh.size +
+        '" font-family="Inter, Helvetica, Arial, sans-serif" fill="' + sh.color + '"' +
+        (sh.rot ? ' transform="rotate(' + +sh.rot.toFixed(3) + ' ' + +sh.x.toFixed(4) + ' ' + +sh.y.toFixed(4) + ')"' : '') + '>' + esc(sh.s) + '</text>');
+    }
+  });
+  return (forFile ? '<?xml version="1.0" encoding="UTF-8"?>\n' : '') +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + [b.x, b.y, b.w, b.h].map(function(n) { return +n.toFixed(4); }).join(' ') +
+    '" width="' + b.w.toFixed(3) + 'cm" height="' + b.h.toFixed(3) + 'cm"' +
+    (forFile ? '' : ' style="max-width:100%;height:auto;background:white"') + '>' +
+    (forFile ? '<rect x="' + b.x + '" y="' + b.y + '" width="' + b.w + '" height="' + b.h + '" fill="white"/>' : '') +
+    out.join('') + '</svg>';
+}
 
-  prevEl.innerHTML = svg;
+// --- Page planning for A4 (single page or tiled with overlap) ---
+// Each sheet prints its cell plus PAGE_OVERLAP on every side, so neighbours overlap by 2 * PAGE_OVERLAP.
+var PAGE_MARGIN = 1, PAGE_FOOTER = 1.4, PAGE_OVERLAP = 0.5, PDF_PAD = 0.3;
+
+// Template rotated by 90° (paper orientation does not matter for a template)
+function rotateModel(m) {
+  function pt(x, y) { return [-y, x]; }
+  var shapes = m.shapes.map(function(sh) {
+    if (sh.t === 'text') {
+      var q = pt(sh.x, sh.y);
+      return Object.assign({}, sh, { x: q[0], y: q[1], rot: sh.rot + 90 });
+    }
+    return Object.assign({}, sh, { cmds: sh.cmds.map(function(c) {
+      var out = [c[0]];
+      for (var i = 1; i < c.length; i += 2) { var q = pt(c[i], c[i + 1]); out.push(q[0], q[1]); }
+      return out;
+    }) });
+  });
+  var b = m.bbox;
+  return Object.assign({}, m, { shapes: shapes, bbox: { x: -(b.y + b.h), y: b.x, w: b.h, h: b.w } });
+}
+
+// Chooses paper orientation and template rotation with the fewest A4 sheets
+function planPages(m) {
+  var best = null;
+  [false, true].forEach(function(rot) {
+    var b = m.bbox, pad = 0.8 - PDF_PAD;   // the preview padding is not needed on paper
+    var w = (rot ? b.h : b.w) - 2 * pad, h = (rot ? b.w : b.h) - 2 * pad;
+    [[21, 29.7], [29.7, 21]].forEach(function(d) {
+      var aw = d[0] - 2 * PAGE_MARGIN, ah = d[1] - 2 * PAGE_MARGIN - PAGE_FOOTER, plan;
+      if (w <= aw && h <= ah) {
+        plan = { cols: 1, rows: 1, single: true };
+      } else {
+        var cw = aw - 2 * PAGE_OVERLAP, ch = ah - 2 * PAGE_OVERLAP;
+        plan = { cw: cw, ch: ch, single: false, cols: Math.ceil(w / cw - 1e-6), rows: Math.ceil(h / ch - 1e-6) };
+      }
+      plan.pw = d[0]; plan.ph = d[1]; plan.aw = aw; plan.ah = ah; plan.rot = rot; plan.pad = pad;
+      plan.n = plan.cols * plan.rows;
+      if (!best || plan.n < best.n) best = plan;
+    });
+  });
+  return best;
+}
+
+// --- Minimal PDF writer (Helvetica, WinAnsi) — no external libraries ---
+var PT = 72 / 2.54;
+var WINANSI = { 0x20AC: 128, 0x201A: 130, 0x201E: 132, 0x2026: 133, 0x2013: 150, 0x2014: 151,
+                0x2018: 145, 0x2019: 146, 0x201C: 147, 0x201D: 148, 0x2022: 149, 0x2212: 45 };
+
+function pdfStr(s) {
+  var out = '';
+  for (var i = 0; i < s.length; i++) {
+    var c = s.charCodeAt(i);
+    if (c > 255) c = WINANSI[c] || 63;
+    if (c === 40 || c === 41 || c === 92) out += '\\' + String.fromCharCode(c);
+    else if (c < 32 || c > 126) out += '\\' + ('00' + c.toString(8)).slice(-3);
+    else out += String.fromCharCode(c);
+  }
+  return '(' + out + ')';
+}
+
+function pdfRGB(hex) {
+  return [1, 3, 5].map(function(i) { return +(parseInt(hex.substr(i, 2), 16) / 255).toFixed(3); }).join(' ');
+}
+
+function PdfPage(wcm, hcm) { this.w = wcm; this.h = hcm; this.ops = []; }
+PdfPage.prototype.X = function(x) { return +(x * PT).toFixed(2); };
+PdfPage.prototype.Y = function(y) { return +((this.h - y) * PT).toFixed(2); };
+PdfPage.prototype.shape = function(sh, dx, dy) {
+  var me = this, o = this.ops;
+  if (sh.t === 'path') {
+    o.push(pdfRGB(sh.stroke) + ' RG ' + +(sh.w * PT).toFixed(3) + ' w ' +
+      (sh.dash ? '[' + sh.dash.map(function(d) { return +(d * PT).toFixed(2); }).join(' ') + '] 0 d' : '[] 0 d'));
+    var d = [];
+    sh.cmds.forEach(function(c) {
+      if (c[0] === 'M') d.push(me.X(c[1] + dx) + ' ' + me.Y(c[2] + dy) + ' m');
+      else if (c[0] === 'L') d.push(me.X(c[1] + dx) + ' ' + me.Y(c[2] + dy) + ' l');
+      else if (c[0] === 'C') d.push([me.X(c[1] + dx), me.Y(c[2] + dy), me.X(c[3] + dx), me.Y(c[4] + dy), me.X(c[5] + dx), me.Y(c[6] + dy)].join(' ') + ' c');
+      else d.push('h');
+    });
+    o.push(d.join('\n') + '\nS');
+  } else {
+    var a = -sh.rot * Math.PI / 180, cos = Math.cos(a), sin = Math.sin(a);
+    var x = (sh.x + dx) * PT, y = (this.h - sh.y - dy) * PT;
+    if (sh.anchor === 'middle') { var w = textWidth(sh.s, sh.size) * PT; x -= cos * w / 2; y -= sin * w / 2; }
+    o.push('BT /F1 ' + +(sh.size * PT).toFixed(2) + ' Tf ' + pdfRGB(sh.color) + ' rg ' +
+      [cos, sin, -sin, cos, x, y].map(function(n) { return +n.toFixed(3); }).join(' ') + ' Tm ' + pdfStr(sh.s) + ' Tj ET');
+  }
+};
+PdfPage.prototype.clip = function(x, y, w, h) {
+  this.ops.push(this.X(x) + ' ' + this.Y(y + h) + ' ' + +(w * PT).toFixed(2) + ' ' + +(h * PT).toFixed(2) + ' re W n');
+};
+
+function buildPdf(pages) {
+  var objs = ['<< /Type /Catalog /Pages 2 0 R >>', null,
+              '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>'];
+  var kids = [];
+  pages.forEach(function(pg) {
+    var content = '1 J 1 j\n' + pg.ops.join('\n');
+    kids.push((objs.length + 1) + ' 0 R');
+    objs.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + +(pg.w * PT).toFixed(2) + ' ' + +(pg.h * PT).toFixed(2) +
+              '] /Resources << /Font << /F1 3 0 R >> >> /Contents ' + (objs.length + 2) + ' 0 R >>');
+    objs.push('<< /Length ' + content.length + ' >>\nstream\n' + content + '\nendstream');
+  });
+  objs[1] = '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + pages.length + ' >>';
+  var out = '%PDF-1.4\n', offs = [];
+  objs.forEach(function(o, i) { offs.push(out.length); out += (i + 1) + ' 0 obj\n' + o + '\nendobj\n'; });
+  var xref = out.length;
+  out += 'xref\n0 ' + (objs.length + 1) + '\n0000000000 65535 f \n' +
+         offs.map(function(n) { return ('000000000' + n).slice(-10) + ' 00000 n \n'; }).join('') +
+         'trailer\n<< /Size ' + (objs.length + 1) + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF\n';
+  return out;
+}
+
+// Footer: 5 cm control ruler on every sheet, sheet info and instructions
+function pageFooter(pg, line1, line2) {
+  var y = pg.h - PAGE_MARGIN - 0.75, x = PAGE_MARGIN;
+  rulerShapes(x, y).forEach(function(sh) { pg.shape(sh, 0, 0); });
+  pg.shape(text(x + 2.5, y + 0.72, t('pdfRuler'), 0.22, COL.aux), 0, 0);
+  pg.shape(text(x + 6, y - 0.1, line1, 0.3, COL.label, 'start'), 0, 0);
+  pg.shape(text(x + 6, y + 0.38, line2, 0.24, COL.label, 'start'), 0, 0);
+}
+
+function makePdf(model) {
+  var plan = planPages(model), m = plan.rot ? rotateModel(model) : model, pages = [];
+  var b = { x: m.bbox.x + plan.pad, y: m.bbox.y + plan.pad, w: m.bbox.w - 2 * plan.pad, h: m.bbox.h - 2 * plan.pad };
+  if (plan.single) {
+    var pg = new PdfPage(plan.pw, plan.ph);
+    var dx = PAGE_MARGIN + (plan.aw - b.w) / 2 - b.x, dy = PAGE_MARGIN + (plan.ah - b.h) / 2 - b.y;
+    m.shapes.forEach(function(sh) { pg.shape(sh, dx, dy); });
+    var single = t('pdfFooterSingle').split(' · ');
+    pageFooter(pg, single[0] + ' · potterytools.online', single.slice(1).join(' · '));
+    pages.push(pg);
+  } else {
+    var gx = b.x - (plan.cols * plan.cw - b.w) / 2, gy = b.y - (plan.rows * plan.ch - b.h) / 2;
+    var id = function(c, r) { return String.fromCharCode(65 + r) + (c + 1); };
+    for (var r = 0; r < plan.rows; r++) for (var c = 0; c < plan.cols; c++) {
+      var p = new PdfPage(plan.pw, plan.ph);
+      var cx = gx + c * plan.cw, cy = gy + r * plan.ch;          // core cell (template coords)
+      var ox = PAGE_MARGIN + PAGE_OVERLAP - cx, oy = PAGE_MARGIN + PAGE_OVERLAP - cy;  // template -> page
+      p.ops.push('q');
+      p.clip(PAGE_MARGIN, PAGE_MARGIN, plan.aw, plan.ah);
+      m.shapes.forEach(function(sh) { p.shape(sh, ox, oy); });
+      p.ops.push('Q');
+      // Glue lines on edges with a neighbour, plus neighbour sheet ids in the overlap band
+      var L = PAGE_MARGIN + PAGE_OVERLAP, T = PAGE_MARGIN + PAGE_OVERLAP, R = L + plan.cw, B = T + plan.ch;
+      var dash = [0.3, 0.2];
+      if (c > 0)             { p.shape(line(L, PAGE_MARGIN, L, PAGE_MARGIN + plan.ah, COL.seam, 0.03, dash), 0, 0); p.shape(text(L + 0.45, (T + B) / 2, id(c - 1, r), 0.35, COL.seam), 0, 0); }
+      if (c < plan.cols - 1) { p.shape(line(R, PAGE_MARGIN, R, PAGE_MARGIN + plan.ah, COL.seam, 0.03, dash), 0, 0); p.shape(text(R - 0.45, (T + B) / 2, id(c + 1, r), 0.35, COL.seam), 0, 0); }
+      if (r > 0)             { p.shape(line(PAGE_MARGIN, T, PAGE_MARGIN + plan.aw, T, COL.seam, 0.03, dash), 0, 0); p.shape(text((L + R) / 2, T + 0.55, id(c, r - 1), 0.35, COL.seam), 0, 0); }
+      if (r < plan.rows - 1) { p.shape(line(PAGE_MARGIN, B, PAGE_MARGIN + plan.aw, B, COL.seam, 0.03, dash), 0, 0); p.shape(text((L + R) / 2, B - 0.25, id(c, r + 1), 0.35, COL.seam), 0, 0); }
+      p.shape(text(L + 0.2, T + 0.7, id(c, r), 0.6, COL.seam, 'start'), 0, 0);
+      var parts = t('pdfFooterTile').replace('{0}', id(c, r)).replace('{1}', pages.length + 1).replace('{2}', plan.n).split(' · ');
+      pageFooter(p, parts.slice(0, 2).join(' · ') + ' · potterytools.online', parts.slice(2).join(' · '));
+      pages.push(p);
+    }
+  }
+  return buildPdf(pages);
+}
+
+// --- Downloads ---
+function fileBase() {
+  var p = lastModel.params, u = unitMode === 'd' ? 'd' : 'r', k = unitMode === 'd' ? 2 : 1;
+  return 'kegelmantel_' + u + fmt(p.r1 * k) + '-' + fmt(p.r2 * k) + '_h' + fmt(p.h);
+}
+
+function download(data, name, type) {
+  var blob = new Blob([data], { type: type }), a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+}
+
+function downloadPdf() {
+  if (!lastModel) return;
+  var s = makePdf(lastModel), bytes = new Uint8Array(s.length);
+  for (var i = 0; i < s.length; i++) bytes[i] = s.charCodeAt(i) & 255;
+  download(bytes, fileBase() + '.pdf', 'application/pdf');
+}
+
+function downloadSvg() {
+  if (lastModel) download(toSVG(lastModel, true), fileBase() + '.svg', 'image/svg+xml');
+}
+
+// --- Share via URL ---
+var URL_FIELDS = ['r1', 'r2', 'h', 'tab', 'dry', 'fire', 'thick'];
+
+function defaultFor(id) { return id === 'r1' || id === 'r2' ? DEFAULTS[unitMode][id] : DEFAULTS[id]; }
+
+function syncUrl() {
+  var q = new URLSearchParams();
+  q.set('lang', currentLang);
+  if (unitMode === 'd') q.set('u', 'd');
+  URL_FIELDS.forEach(function(id) {
+    var raw = document.getElementById(id).value;
+    if (raw !== '' && parseFloat(raw) !== defaultFor(id)) q.set(id, raw);
+  });
+  if (sideMode === 'i') q.set('side', 'i');
+  if (!document.getElementById('showBottom').checked) q.set('b', '0');
+  history.replaceState(null, '', window.location.pathname + '?' + q.toString());
+}
+
+function loadFromUrl() {
+  var q = new URLSearchParams(window.location.search);
+  if (q.get('u') === 'd') {
+    setUnit('d', false);
+    document.getElementById('r1').value = DEFAULTS.d.r1;
+    document.getElementById('r2').value = DEFAULTS.d.r2;
+  }
+  if (q.get('side') === 'i') setSide('i', false);
+  URL_FIELDS.forEach(function(id) {
+    var v = parseFloat(q.get(id));
+    if (!isNaN(v)) document.getElementById(id).value = v;
+  });
+  if (q.get('b') === '0') document.getElementById('showBottom').checked = false;
+}
+
+function copyLink() {
+  var btn = document.querySelector('#btnLink span');
+  function done() {
+    btn.textContent = t('linkCopied');
+    setTimeout(function() { btn.textContent = t('btnLink'); }, 2000);
+  }
+  if (navigator.clipboard) navigator.clipboard.writeText(window.location.href).then(done, function() { prompt('', window.location.href); });
+  else prompt('', window.location.href);
+}
+
+// --- Toggles ---
+function setSeg(segId, attr, value) {
+  document.querySelectorAll('#' + segId + ' button').forEach(function(b) {
+    var on = b.getAttribute(attr) === value;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+
+function setUnit(u, convert) {
+  if (u === unitMode) return;
+  if (convert !== false) {
+    var k = u === 'd' ? 2 : 0.5;
+    ['r1', 'r2'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el.value !== '') el.value = +(parseFloat(el.value) * k).toFixed(2);
+    });
+  }
+  unitMode = u;
+  setSeg('unitSeg', 'data-unit', u);
+  var top = document.getElementById('labelTop'), bottom = document.getElementById('labelBottom');
+  top.setAttribute('data-i18n', u === 'd' ? 'labelD1' : 'labelR1');
+  bottom.setAttribute('data-i18n', u === 'd' ? 'labelD2' : 'labelR2');
+  top.innerHTML = t(top.getAttribute('data-i18n'));
+  bottom.innerHTML = t(bottom.getAttribute('data-i18n'));
+  if (convert !== false) update();
+}
+
+function setSide(s, recalc) {
+  sideMode = s;
+  setSeg('sideSeg', 'data-side', s);
+  if (recalc !== false) update();
+}
+
+// --- Main update ---
+function update() {
+  var infoEl = document.getElementById('info');
+  var warnEl = document.getElementById('warning-area');
+  var wetEl = document.getElementById('wet-dims');
+  var prevEl = document.getElementById('preview');
+  syncUrl();
+
+  var p = readInputs(), err = validate(p), m = err ? null : buildModel(p);
+  if (m && m.error) { err = m.error; m = null; }
+  lastModel = m;
+  document.getElementById('btnPdf').disabled = !m;
+  document.getElementById('btnSvg').disabled = !m;
+  if (err) {
+    prevEl.innerHTML = '<div class="error">' + t(err) + '</div>';
+    infoEl.innerHTML = ''; warnEl.innerHTML = ''; wetEl.innerHTML = '';
+    return;
+  }
+
+  var i = m.info;
+  function chip(label, value) {
+    return '<div class="info-chip"><div class="label">' + t(label) + '</div><div class="value">' + value + '</div></div>';
+  }
+  infoEl.innerHTML =
+    chip('infoSlant', fmt(i.l, 2) + ' cm') +
+    chip('infoAngle', fmt(i.thetaDeg, 1) + '°') +
+    chip('infoInner', fmt(i.Rin, 2) + ' cm') +
+    chip('infoOuter', fmt(i.Rout, 2) + ' cm') +
+    (i.sTot > 0 ? chip('infoShrink', fmt(i.sTot * 100, 1) + ' %') : '');
+
+  if (i.sTot > 0) {
+    var k = unitMode === 'd' ? 2 : 1, pre = unitMode === 'd' ? 'Ø ' : 'r ';
+    wetEl.innerHTML = esc(t('wetDims').replace('{0}',
+      t('wetTop') + ' ' + pre + fmt(i.wet.r1 * k) + ' cm · ' +
+      t('wetBottom') + ' ' + pre + fmt(i.wet.r2 * k) + ' cm · ' +
+      t('wetHeight') + ' ' + fmt(i.wet.h) + ' cm'));
+  } else {
+    wetEl.innerHTML = '';
+  }
+
+  var plan = planPages(m);
+  warnEl.innerHTML = plan.single ? '' : '<div class="warning">' +
+    esc(t('warnBig').replace('{0}', fmt(m.bbox.w, 0)).replace('{1}', fmt(m.bbox.h, 0)).replace('{2}', plan.n)) + '</div>';
+
+  prevEl.innerHTML = toSVG(m, false);
 }
 
 // Event listeners
 document.querySelectorAll('input').forEach(function(el) {
   el.addEventListener('input', update);
 });
+document.querySelectorAll('#unitSeg button').forEach(function(b) {
+  b.addEventListener('click', function() { setUnit(b.getAttribute('data-unit')); });
+});
+document.querySelectorAll('#sideSeg button').forEach(function(b) {
+  b.addEventListener('click', function() { setSide(b.getAttribute('data-side')); });
+});
+document.getElementById('btnPdf').addEventListener('click', downloadPdf);
+document.getElementById('btnSvg').addEventListener('click', downloadSvg);
+document.getElementById('btnLink').addEventListener('click', copyLink);
 
 // Detect language: URL param > browser language > default (de)
 (function() {
   var supported = ['de', 'en', 'es', 'fr', 'it'];
-  var urlParams = new URLSearchParams(window.location.search);
-  var urlLang = urlParams.get('lang');
-
-  if (urlLang && supported.indexOf(urlLang) !== -1) {
-    setLang(urlLang, false);
-  } else {
-    var browserLang = (navigator.language || navigator.userLanguage || 'de').substring(0, 2).toLowerCase();
-    if (supported.indexOf(browserLang) !== -1) {
-      setLang(browserLang);
-    } else {
-      setLang('de');
-    }
-  }
+  var urlLang = new URLSearchParams(window.location.search).get('lang');
+  var browserLang = (navigator.language || navigator.userLanguage || 'de').substring(0, 2).toLowerCase();
+  loadFromUrl();
+  setLang(supported.indexOf(urlLang) !== -1 ? urlLang : supported.indexOf(browserLang) !== -1 ? browserLang : 'de');
 })();
 </script>
 </body>
