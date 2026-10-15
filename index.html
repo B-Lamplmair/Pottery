@@ -31,12 +31,16 @@
 <meta property="og:description" id="og-desc" content="Kostenloser Kegelmantel-Generator. Erstelle maßgerechte Schablonen für Vasen, Schalen und Becher.">
 <meta property="og:type" content="website">
 <meta property="og:url" id="og-url" content="https://potterytools.online/">
-<meta property="og:image" content="">
+<meta property="og:image" content="https://potterytools.online/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kegelmantel-Generator: Schablone für Vasen, Schalen und Becher">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" id="tw-title" content="Kegelmantel-Schablone für Töpferei">
 <meta name="twitter:description" id="tw-desc" content="Kostenloser Kegelmantel-Generator für Töpferei und Keramik.">
+<meta name="twitter:image" content="https://potterytools.online/og-image.png">
 
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏺</text></svg>">
@@ -65,58 +69,59 @@
 }
 </script>
 
-<!-- Structured Data: FAQ -->
+<!-- Structured Data: FAQ (German = default content; replaced per language by setLang) -->
 <script type="application/ld+json" id="faq-jsonld">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": "de",
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is a cone template (Kegelmantel)?",
+      "name": "Was ist ein Kegelmantel?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A cone template (Kegelmantel) is a flat pattern that, when cut out and rolled, forms the surface of a truncated cone. In pottery, it is used in slab building technique to create symmetrical shapes like vases, bowls, cups, and lampshades from flat clay slabs."
+        "text": "Ein Kegelmantel ist die abgewickelte Oberfläche eines Kegelstumpfs. In der Töpferei wird er als Schablone für die Plattentechnik verwendet — ausschneiden, rollen, zusammenkleben — und du erhältst eine perfekt symmetrische Form für Vasen, Schalen, Becher oder Lampenschirme."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I print the template at the correct size?",
+      "name": "Wie drucke ich die Schablone richtig?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "When printing, select 'Actual Size' or '100%' in your printer settings. Do not use 'Fit to Page' or any scaling option. The template includes a ruler you can measure with a physical ruler to verify the print is accurate."
+        "text": "Wähle beim Drucken unbedingt „Tatsächliche Größe\" oder „100%\" in den Druckereinstellungen. Verwende nicht „An Seite anpassen\". Die Schablone enthält ein Kontrolllineal — miss es mit einem echten Lineal nach, um sicherzustellen, dass der Ausdruck korrekt ist."
       }
     },
     {
       "@type": "Question",
-      "name": "What measurements do I need?",
+      "name": "Welche Maße brauche ich?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You need three measurements: the top radius (opening of your piece), the bottom radius (base of your piece), and the height. The top radius must be smaller than the bottom radius. All measurements are in centimeters."
+        "text": "Du brauchst drei Maße: den oberen Radius (Öffnung deines Stücks), den unteren Radius (Boden) und die Höhe. Der obere Radius muss kleiner als der untere sein. Alle Maße werden in Zentimetern eingegeben."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the difference between height and slant height?",
+      "name": "Was ist der Unterschied zwischen Höhe und Schrägehöhe?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The height is the vertical distance between the top and bottom of your piece — how tall the finished vase or bowl will be. The slant height is the actual length of the angled outer wall. Since the wall tapers rather than going straight up, the slant height is always greater than the height. The tool calculates the slant height automatically — you only need to enter the height."
+        "text": "Die Höhe ist der senkrechte Abstand zwischen Ober- und Unterkante deines Stücks — also wie hoch die fertige Vase oder Schale wird. Die Schrägehöhe ist die tatsächliche Länge der schrägen Außenwand. Da die Wand nicht gerade nach oben geht, sondern schräg zuläuft, ist die Schrägehöhe immer größer als die Höhe. Das Tool berechnet die Schrägehöhe automatisch — du gibst nur die Höhe ein."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the glue tab for?",
+      "name": "Wofür ist die Klebelasche?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The glue tab is a small flap added to one edge of the template. When you roll the clay slab into a cone shape, the glue tab provides an overlap area where the two edges meet, allowing you to score, slip, and join them securely."
+        "text": "Die Klebelasche ist ein schmaler Streifen am Rand der Schablone. Wenn du die Tonplatte zum Kegel rollst, überlappen sich die Kanten an der Lasche — dort kannst du einritzen, Schlicker auftragen und die Naht sauber verbinden."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I use this for large pieces?",
+      "name": "Kann ich damit auch große Stücke bauen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes! If the template is larger than A4 paper, the tool will show a warning with the approximate width. You can print on A3 paper, or print on multiple A4 sheets and tape them together. Use the control ruler on the template to verify alignment."
+        "text": "Ja! Wenn die Schablone breiter als A4 ist, zeigt das Tool einen Hinweis. Du kannst auf A3 drucken oder mehrere A4-Blätter zusammenkleben. Nutze das Kontrolllineal auf der Schablone, um die Blätter exakt auszurichten."
       }
     }
   ]
@@ -147,6 +152,8 @@
     --shadow-lg: 0 16px 48px rgba(74,63,58,0.1);
     --radius: 20px;
     --radius-sm: 12px;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-heading: 'Cormorant Garamond', serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -531,7 +538,7 @@
   .partner-headline {
     font-family: var(--font-display);
     font-size: 1.2em;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--clay-dark);
     margin: 0 0 16px 0;
   }
@@ -570,7 +577,7 @@
 
   .affiliate-note {
     font-size: 0.72em !important;
-    color: var(--muted) !important;
+    color: var(--text-muted) !important;
     margin-bottom: 0 !important;
     opacity: 0.7;
   }
@@ -596,7 +603,7 @@
     cursor: pointer;
     font-family: var(--font-heading);
     font-size: 1.05em;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text);
     list-style: none;
     display: flex;
@@ -848,7 +855,7 @@ var T = {
     errR2H: 'Unterer Radius und Höhe müssen größer als 0 sein.',
     errR1neg: 'Oberer Radius darf nicht negativ sein.',
     errR1geR2: 'Oberer Radius muss kleiner als unterer Radius sein.',
-    warnBig: 'Hinweis: Die Vorlage ist ca. {0} cm breit. Evtl. auf A3 drucken oder zusammenkleben.',
+    warnBig: 'Hinweis: Die Vorlage ist ca. {0} \u00d7 {1} cm gro\u00df und passt nicht auf ein A4-Blatt. Auf A3 drucken oder mehrere Bl\u00e4tter zusammenkleben.',
     tabLabel: 'Klebelasche',
     bottomLabel: 'Boden (r={0} cm)',
     topLabel: 'Deckel (r={0} cm)',
@@ -887,10 +894,6 @@ var T = {
     printNote: 'When printing, choose "Actual size" / 100%, no scaling!',
     partnerText: 'Template done? Find the right materials.',
     footerMade: 'Made with love for potters',
-    affClay: 'Pottery Clay',
-    affWheel: 'Pottery Wheels',
-    affTools: 'Tool Sets',
-    affGlaze: 'Glazes',
     infoSlant: 'Slant height',
     infoAngle: 'Sector angle',
     infoInner: 'Inner arc',
@@ -898,7 +901,7 @@ var T = {
     errR2H: 'Bottom radius and height must be greater than 0.',
     errR1neg: 'Top radius must not be negative.',
     errR1geR2: 'Top radius must be smaller than bottom radius.',
-    warnBig: 'Note: The template is approx. {0} cm wide. Consider A3 paper or taping sheets.',
+    warnBig: 'Note: The template is approx. {0} \u00d7 {1} cm and won\'t fit on an A4 sheet. Print on A3 or tape several sheets together.',
     tabLabel: 'Glue tab',
     bottomLabel: 'Bottom (r={0} cm)',
     topLabel: 'Top (r={0} cm)',
@@ -929,23 +932,23 @@ var T = {
     labelR1: 'Radio superior R<sub>1</sub>',
     labelR2: 'Radio inferior R<sub>2</sub>',
     labelH: 'Altura',
-    labelTab: 'Pestana de pegado',
-    labelShowBottom: 'Mostrar circulo de base',
+    labelTab: 'Pesta\u00f1a de pegado',
+    labelShowBottom: 'Mostrar c\u00edrculo de base',
     cardResults: 'Resultados',
     cardPreview: 'Vista previa',
-    btnPrint: 'Imprimir (tamano real)',
-    printNote: 'Al imprimir, elegir "Tamano real" / 100%, sin escalar!',
+    btnPrint: 'Imprimir (tama\u00f1o real)',
+    printNote: 'Al imprimir, elige "Tama\u00f1o real" / 100%, \u00a1sin escalar!',
     partnerText: '\u00bfPlantilla lista? Encuentra los materiales adecuados.',
     footerMade: 'Hecho con amor para ceramistas',
     infoSlant: 'Generatriz',
-    infoAngle: 'Angulo del sector',
+    infoAngle: '\u00c1ngulo del sector',
     infoInner: 'Arco interior',
     infoOuter: 'Arco exterior',
     errR2H: 'El radio inferior y la altura deben ser mayores que 0.',
     errR1neg: 'El radio superior no puede ser negativo.',
     errR1geR2: 'El radio superior debe ser menor que el radio inferior.',
-    warnBig: 'Nota: La plantilla mide aprox. {0} cm de ancho. Considere papel A3.',
-    tabLabel: 'Pestana',
+    warnBig: 'Nota: La plantilla mide aprox. {0} \u00d7 {1} cm y no cabe en una hoja A4. Imprime en A3 o une varias hojas.',
+    tabLabel: 'Pesta\u00f1a',
     bottomLabel: 'Base (r={0} cm)',
     topLabel: 'Tapa (r={0} cm)',
     rulerLabel: 'cm (medida de control)',
@@ -969,37 +972,37 @@ var T = {
     faq6a: 'La altura es la distancia vertical entre la parte superior e inferior de tu pieza — lo alto que ser\u00e1 el jarr\u00f3n o cuenco terminado. La generatriz es la longitud real de la pared exterior inclinada. Como la pared se estrecha en lugar de ir recta hacia arriba, la generatriz siempre es mayor que la altura. La herramienta calcula la generatriz autom\u00e1ticamente — solo necesitas introducir la altura.'
   },
   fr: {
-    title: 'Generateur de cone',
+    title: 'G\u00e9n\u00e9rateur de c\u00f4ne',
     subtitle: 'Gabarits pour vases, bols et tasses',
     cardMeasurements: 'Entrer les mesures',
-    labelR1: 'Rayon superieur R<sub>1</sub>',
-    labelR2: 'Rayon inferieur R<sub>2</sub>',
+    labelR1: 'Rayon sup\u00e9rieur R<sub>1</sub>',
+    labelR2: 'Rayon inf\u00e9rieur R<sub>2</sub>',
     labelH: 'Hauteur',
     labelTab: 'Languette de collage',
     labelShowBottom: 'Afficher le cercle de base',
-    cardResults: 'Resultats',
-    cardPreview: 'Apercu',
-    btnPrint: 'Imprimer (taille reelle)',
-    printNote: 'Lors de l\'impression, choisir "Taille reelle" / 100%, sans mise a l\'echelle !',
+    cardResults: 'R\u00e9sultats',
+    cardPreview: 'Aper\u00e7u',
+    btnPrint: 'Imprimer (taille r\u00e9elle)',
+    printNote: 'Lors de l\'impression, choisissez \u00ab Taille r\u00e9elle \u00bb / 100 %, sans mise \u00e0 l\'\u00e9chelle !',
     partnerText: 'Gabarit termin\u00e9 ? Trouvez les bons mat\u00e9riaux.',
-    footerMade: 'Fait avec amour pour les ceramistes',
-    infoSlant: 'Hauteur inclinee',
+    footerMade: 'Fait avec amour pour les c\u00e9ramistes',
+    infoSlant: 'Hauteur inclin\u00e9e',
     infoAngle: 'Angle du secteur',
-    infoInner: 'Arc interieur',
-    infoOuter: 'Arc exterieur',
-    errR2H: 'Le rayon inferieur et la hauteur doivent etre superieurs a 0.',
-    errR1neg: 'Le rayon superieur ne doit pas etre negatif.',
-    errR1geR2: 'Le rayon superieur doit etre inferieur au rayon inferieur.',
-    warnBig: 'Note : Le gabarit mesure env. {0} cm de large. Envisagez du papier A3.',
+    infoInner: 'Arc int\u00e9rieur',
+    infoOuter: 'Arc ext\u00e9rieur',
+    errR2H: 'Le rayon inf\u00e9rieur et la hauteur doivent \u00eatre sup\u00e9rieurs \u00e0 0.',
+    errR1neg: 'Le rayon sup\u00e9rieur ne doit pas \u00eatre n\u00e9gatif.',
+    errR1geR2: 'Le rayon sup\u00e9rieur doit \u00eatre inf\u00e9rieur au rayon inf\u00e9rieur.',
+    warnBig: 'Remarque : le gabarit mesure env. {0} \u00d7 {1} cm et ne tient pas sur une feuille A4. Imprimez en A3 ou assemblez plusieurs feuilles.',
     tabLabel: 'Languette',
     bottomLabel: 'Fond (r={0} cm)',
     topLabel: 'Couvercle (r={0} cm)',
-    rulerLabel: 'cm (mesure de controle)',
+    rulerLabel: 'cm (mesure de contr\u00f4le)',
     affClay: 'Argile',
     affWheel: 'Tours de potier',
     affTools: 'Outils',
     affGlaze: '\u00c9maux',
-    affiliateNote: 'En commandant via ces liens, tu soutiens cet outil — sans frais suppl\u00e9mentaires pour toi. Merci ! \u2665',
+    affiliateNote: 'En commandant via ces liens, vous soutenez cet outil — sans frais suppl\u00e9mentaires pour vous. Merci ! \u2665',
     faqTitle: 'Questions fr\u00e9quentes',
     faq1q: 'Qu\'est-ce qu\'un gabarit de c\u00f4ne ?',
     faq1a: 'Un gabarit de c\u00f4ne est la surface d\u00e9pli\u00e9e d\'un c\u00f4ne tronqu\u00e9. En poterie, il est utilis\u00e9 dans la technique de la plaque — d\u00e9couper, rouler, assembler les bords — et vous obtenez une forme parfaitement sym\u00e9trique pour vases, bols, tasses ou abat-jour.',
@@ -1036,7 +1039,7 @@ var T = {
     errR2H: 'Il raggio inferiore e l\'altezza devono essere maggiori di 0.',
     errR1neg: 'Il raggio superiore non deve essere negativo.',
     errR1geR2: 'Il raggio superiore deve essere minore del raggio inferiore.',
-    warnBig: 'Nota: il modello e largo ca. {0} cm. Considerate carta A3.',
+    warnBig: 'Nota: il modello misura ca. {0} \u00d7 {1} cm e non entra in un foglio A4. Stampa su A3 o unisci pi\u00f9 fogli.',
     tabLabel: 'Linguetta',
     bottomLabel: 'Fondo (r={0} cm)',
     topLabel: 'Coperchio (r={0} cm)',
@@ -1100,6 +1103,24 @@ var SEO = {
 
 function t(key) { return T[currentLang][key] || T['de'][key] || key; }
 
+// Same order as the visible FAQ list
+var FAQ_ORDER = [1, 2, 3, 6, 4, 5];
+
+function buildFaqJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'inLanguage': currentLang,
+    'mainEntity': FAQ_ORDER.map(function(n) {
+      return {
+        '@type': 'Question',
+        'name': t('faq' + n + 'q'),
+        'acceptedAnswer': { '@type': 'Answer', 'text': t('faq' + n + 'a') }
+      };
+    })
+  };
+}
+
 function setLang(lang, pushState) {
   currentLang = lang;
   document.documentElement.lang = lang;
@@ -1131,6 +1152,9 @@ function setLang(lang, pushState) {
     var key = el.getAttribute('data-i18n');
     el.innerHTML = t(key);
   });
+
+  // Keep FAQ structured data in sync with the visible FAQ
+  document.getElementById('faq-jsonld').textContent = JSON.stringify(buildFaqJsonLd(), null, 2);
 
   // Re-calculate to update dynamic text
   update();
@@ -1175,13 +1199,6 @@ function update() {
   var thetaDeg = theta * 180 / Math.PI;
 
   // Info
-  var warn = '';
-  if (2 * R2t * Math.sin(Math.min(theta, Math.PI) / 2) > 28) {
-    var w = (2 * R2t * Math.sin(Math.min(theta, Math.PI) / 2)).toFixed(0);
-    warn = '<div class="warning">' + t('warnBig').replace('{0}', w) + '</div>';
-  }
-  warnEl.innerHTML = warn;
-
   infoEl.innerHTML =
     '<div class="info-chip"><div class="label">' + t('infoSlant') + '</div><div class="value">' + l.toFixed(2) + ' cm</div></div>' +
     '<div class="info-chip"><div class="label">' + t('infoAngle') + '</div><div class="value">' + thetaDeg.toFixed(1) + '\u00B0</div></div>' +
@@ -1306,6 +1323,12 @@ function update() {
   xMin -= pad; xMax += pad; yMin -= pad; yMax += pad;
   var svgW = xMax - xMin;
   var svgH = yMax - yMin;
+
+  // A4 check: printable area approx. 19 x 27.7 cm (1 cm margins), portrait or landscape
+  var A4W = 19, A4H = 27.7;
+  var fitsA4 = (svgW <= A4W && svgH <= A4H) || (svgW <= A4H && svgH <= A4W);
+  warnEl.innerHTML = fitsA4 ? '' :
+    '<div class="warning">' + t('warnBig').replace('{0}', svgW.toFixed(0)).replace('{1}', svgH.toFixed(0)) + '</div>';
 
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" ' +
     'viewBox="' + xMin + ' ' + yMin + ' ' + svgW + ' ' + svgH + '" ' +
