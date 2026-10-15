@@ -131,11 +131,26 @@
 <!-- AdSense Platzhalter - Ersetze data-ad-client mit deinem echten AdSense-Code -->
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-DEINE_ID_HIER" crossorigin="anonymous"></script> -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Self-hosted fonts (SIL OFL, see fonts/OFL-*.txt) — no requests to Google -->
+<link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/cormorant-garamond-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 500;
+    font-display: swap;
+    src: url('fonts/inter-latin-var.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('fonts/cormorant-garamond-600-latin.woff2') format('woff2');
+  }
+
   :root {
     --blush: #f2e0d8;
     --sage: #d5ddd2;
@@ -577,10 +592,10 @@
 
   .affiliate-note {
     font-size: 0.72em !important;
-    color: var(--text-muted) !important;
+    color: var(--text-light) !important;
     margin-bottom: 0 !important;
-    opacity: 0.7;
   }
+  .affiliate-note + .affiliate-note { margin-top: 4px; }
 
   /* ---- FAQ ---- */
   .faq-card {
@@ -790,6 +805,7 @@
       <a href="https://www.amazon.de/s?k=Keramik+Glasur&tag=potterytools-21" class="partner-link" target="_blank" rel="noopener noreferrer sponsored"><span data-i18n="affGlaze">Glasuren</span></a>
     </div>
     <p class="affiliate-note" data-i18n="affiliateNote">Mit einer Bestellung über diese Links unterstützt du dieses Tool — für dich kostet es keinen Cent mehr. Danke! ♥</p>
+    <p class="affiliate-note" data-i18n="amazonDisclosure">Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.</p>
   </div>
 
   <!-- FAQ -->
@@ -865,6 +881,7 @@ var T = {
     affTools: 'Werkzeug-Sets',
     affGlaze: 'Glasuren',
     affiliateNote: 'Mit einer Bestellung über diese Links unterstützt du dieses Tool — für dich kostet es keinen Cent mehr. Danke! \u2665',
+    amazonDisclosure: 'Als Amazon-Partner verdiene ich an qualifizierten Verk\u00e4ufen.',
     faqTitle: 'Häufige Fragen',
     faq1q: 'Was ist ein Kegelmantel?',
     faq1a: 'Ein Kegelmantel ist die abgewickelte Oberfläche eines Kegelstumpfs. In der Töpferei wird er als Schablone für die Plattentechnik verwendet — ausschneiden, rollen, zusammenkleben — und du erhältst eine perfekt symmetrische Form für Vasen, Schalen, Becher oder Lampenschirme.',
@@ -911,6 +928,7 @@ var T = {
     affTools: 'Tool Sets',
     affGlaze: 'Glazes',
     affiliateNote: 'Ordering through these links supports this tool — at no extra cost to you. Thank you! \u2665',
+    amazonDisclosure: 'As an Amazon Associate I earn from qualifying purchases.',
     faqTitle: 'FAQ',
     faq1q: 'What is a cone template?',
     faq1a: 'A cone template is the flat, unrolled surface of a truncated cone. In pottery, it is used in slab building technique — cut it out, roll it, join the edges — and you get a perfectly symmetrical shape for vases, bowls, cups, or lampshades.',
@@ -957,6 +975,7 @@ var T = {
     affTools: 'Herramientas',
     affGlaze: 'Esmaltes',
     affiliateNote: 'Al comprar a trav\u00e9s de estos enlaces apoyas esta herramienta — sin coste adicional para ti. \u00a1Gracias! \u2665',
+    amazonDisclosure: 'En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.',
     faqTitle: 'Preguntas frecuentes',
     faq1q: '\u00bfQu\u00e9 es una plantilla de cono?',
     faq1a: 'Una plantilla de cono es la superficie desplegada de un cono truncado. En cer\u00e1mica, se usa en la t\u00e9cnica de planchas — recortar, enrollar, unir los bordes — y obtienes una forma perfectamente sim\u00e9trica para jarrones, cuencos, tazas o pantallas de l\u00e1mparas.',
@@ -1003,6 +1022,7 @@ var T = {
     affTools: 'Outils',
     affGlaze: '\u00c9maux',
     affiliateNote: 'En commandant via ces liens, vous soutenez cet outil — sans frais suppl\u00e9mentaires pour vous. Merci ! \u2665',
+    amazonDisclosure: 'En tant que Partenaire Amazon, je r\u00e9alise un b\u00e9n\u00e9fice sur les achats remplissant les conditions requises.',
     faqTitle: 'Questions fr\u00e9quentes',
     faq1q: 'Qu\'est-ce qu\'un gabarit de c\u00f4ne ?',
     faq1a: 'Un gabarit de c\u00f4ne est la surface d\u00e9pli\u00e9e d\'un c\u00f4ne tronqu\u00e9. En poterie, il est utilis\u00e9 dans la technique de la plaque — d\u00e9couper, rouler, assembler les bords — et vous obtenez une forme parfaitement sym\u00e9trique pour vases, bols, tasses ou abat-jour.',
@@ -1049,6 +1069,7 @@ var T = {
     affTools: 'Attrezzi',
     affGlaze: 'Smalti',
     affiliateNote: 'Ordinando tramite questi link sostieni questo strumento — senza costi aggiuntivi per te. Grazie! \u2665',
+    amazonDisclosure: 'In qualit\u00e0 di Affiliato Amazon io ricevo un guadagno dagli acquisti idonei.',
     faqTitle: 'Domande frequenti',
     faq1q: 'Che cos\'\u00e8 un modello a cono?',
     faq1a: 'Un modello a cono \u00e8 la superficie srotolata di un tronco di cono. Nella ceramica si usa nella tecnica a lastra — ritagliare, arrotolare, unire i bordi — e si ottiene una forma perfettamente simmetrica per vasi, ciotole, tazze o paralumi.',
